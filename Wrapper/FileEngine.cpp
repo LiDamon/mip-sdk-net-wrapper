@@ -9,7 +9,6 @@ namespace CLI
 	FileEngine::Settings::Settings(String^ id, String^ clientData, String^ locale)
 		: ManagedObject(new mip::FileEngine::Settings(net_string_to_std_string(id), net_string_to_std_string(clientData), net_string_to_std_string(locale)))
 	{
-		Console::WriteLine("Creating a new CLI::FileEngine::Settings-wrapper object!");
 	}
 
 	String^ FileEngine::Settings::Id::get()

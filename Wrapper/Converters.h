@@ -5,11 +5,11 @@
 using namespace System;
 using namespace System::Runtime::InteropServices;
 
-static const char* net_string_to_char_array(String^ string)
-{
-	const char* str = (const char*)(Marshal::StringToHGlobalAnsi(string)).ToPointer();
-	return str;
-}
+//static const char* net_string_to_char_array(String^ string)
+//{
+//	const char* str = (const char*)(Marshal::StringToHGlobalAnsi(string)).ToPointer();
+//	return str;
+//}
 
 static std::string net_string_to_std_string(String^ string)
 {

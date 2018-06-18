@@ -1,5 +1,5 @@
-﻿using CLI;
-using System;
+﻿using System;
+using CLI;
 
 namespace CsConsumer
 {
@@ -7,44 +7,65 @@ namespace CsConsumer
     {
         static void Main(string[] args)
         {
-            FileEngine.Settings e = new FileEngine.Settings("id", "clientData", "locale");
+            string clientId = System.Configuration.ConfigurationManager.AppSettings["clientId"];
+            string oAuth2Authority = System.Configuration.ConfigurationManager.AppSettings["oAuth2Authority"];
+            string oAuth2Resource = System.Configuration.ConfigurationManager.AppSettings["oAuth2Resource"];
+            string applicationId = System.Configuration.ConfigurationManager.AppSettings["applicationId"];
+            string applicationName = System.Configuration.ConfigurationManager.AppSettings["applicationName"];
 
-            Console.WriteLine();
-            Console.WriteLine("Initialised...");
-            WriteSettings("\t", e);
+            var identity = new Identity(@"");
 
-            e.SessionId = "sessionId";
-            e.CustomSettings = new Pair<string, string>[]
+            var challenge = new AuthDelegate.OAuth2Challenge(
+                    oAuth2Authority,
+                    oAuth2Resource);
+
+            var token = new AuthDelegate.OAuth2Token();
+
+            AuthDelegate authDelegate = new AuthDelegateImpl(new AdalTokenProvider(clientId));
+            var result = authDelegate.AcquireOAuth2Token(
+                identity,
+                challenge,
+                token);
+
+            Console.WriteLine(token.AccessToken);
+
+
+            var applicationInfo = new ApplicationInfo(
+                applicationId,
+                applicationName);
+
+            string storagePath = System.IO.Path.GetTempPath() + @"\sample_app_data";
+
+
+            var settings = new FileProfile.Settings(storagePath, false, authDelegate, applicationInfo);
+
+            var lateFileProfile = new LateValue<FileProfile>();
+
+            FileProfile.LoadAsync(settings, lateFileProfile);
+            FileProfile profile = lateFileProfile.AwaitValue();
+
+
+            FileEngine.Settings engineSettings = new FileEngine.Settings("1234", "");
+
+            var lateFileEngine = new LateValue<FileEngine>();
+
+            profile.AddEngineAsync(engineSettings, lateFileEngine);
+
+            try
             {
-                new Pair<string, string>("key1", "value1"),
-                new Pair<string, string>("key2", "value2"),
-            };
-
-            Console.WriteLine();
-            Console.WriteLine("Changes made...");
-            WriteSettings("\t", e);
-
-            Console.WriteLine();
-            Console.WriteLine("Press any key to continue ...");
-            Console.ReadKey(true);
-        }
-
-        static void WriteSettings(string prefix, FileEngine.Settings e)
-        {
-            Console.Write(prefix);
-            Console.WriteLine("Id= " + e.Id);
-            Console.Write(prefix);
-            Console.WriteLine("ClientData= " + e.ClientData);
-            Console.Write(prefix);
-            Console.WriteLine("Locale= " + e.Locale);
-            Console.Write(prefix);
-            Console.WriteLine("SessionId= " + e.SessionId);
-            Console.Write(prefix);
-            Console.WriteLine("CustomSettings= ");
-            foreach (var pair in e.CustomSettings)
-            {
-                Console.WriteLine("\t" + pair.First + "= " + pair.Second);
+                FileEngine fileEngine = lateFileEngine.AwaitValue();
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("====================");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("====================");
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key ...");
+            Console.ReadKey();
         }
     }
 }

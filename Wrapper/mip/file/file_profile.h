@@ -186,14 +186,16 @@ public:
    * 
    * @note FileProfile::Observer will be called upon success or failure.
    */
-  FILE_EXPORT static void __CDECL LoadAsync(const Settings& settings, const std::shared_ptr<void>& context);
+//  FILE_EXPORT static void __CDECL LoadAsync(const Settings& settings, const std::shared_ptr<void>& context);
+  FILE_EXPORT static void __cdecl LoadAsync(const Settings& settings, const std::shared_ptr<void>& context);
 
   /**
    * @brief Gets library version.
    *
    * @return Version string
    */
-  FILE_EXPORT static const char* __CDECL GetVersion();
+//  FILE_EXPORT static const char* __CDECL GetVersion();
+  FILE_EXPORT static const char* __cdecl GetVersion();
 
   virtual ~FileProfile() {}
 

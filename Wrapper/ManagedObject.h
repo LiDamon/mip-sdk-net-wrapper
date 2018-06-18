@@ -7,25 +7,37 @@ namespace CLI
 	{
 	protected:
 		T * m_Instance;
+		bool m_owner;
+
 	public:
 		ManagedObject(T* instance)
-			: m_Instance(instance)
+			: ManagedObject(true, instance)
 		{
 		}
+
+		ManagedObject(bool owner, T* instance)
+			: m_Instance(instance),
+			  m_owner(owner)
+		{
+		}
+
 		virtual ~ManagedObject()
 		{
-			if (m_Instance != nullptr)
-			{
-				delete m_Instance;
-			}
+			this->!ManagedObject();
 		}
+
 		!ManagedObject()
 		{
 			if (m_Instance != nullptr)
 			{
-				delete m_Instance;
+				if (m_owner)
+				{
+					delete m_Instance;
+					m_Instance = nullptr;
+				}
 			}
 		}
+
 		T* GetInstance()
 		{
 			return m_Instance;
