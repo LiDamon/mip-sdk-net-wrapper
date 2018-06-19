@@ -139,11 +139,16 @@
   <ItemGroup>
     <ClInclude Include="ApplicationInfo.h" />
     <ClInclude Include="AuthDelegate.h" />
+    <ClInclude Include="ContentLabel.h" />
     <ClInclude Include="Converters.h" />
+    <ClInclude Include="ExceptionHelper.h" />
     <ClInclude Include="FileEngine.h" />
+    <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FileHandlerObserverImpl.h" />
     <ClInclude Include="FileProfile.h" />
     <ClInclude Include="FileProfileObserverImpl.h" />
     <ClInclude Include="Identity.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="LateValue.h" />
     <ClInclude Include="ManagedObject.h" />
     <ClInclude Include="Pair.h" />
@@ -154,10 +159,14 @@
     <ClCompile Include="ApplicationInfo.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="AuthDelegate.cpp" />
+    <ClCompile Include="ContentLabel.cpp" />
     <ClCompile Include="FileEngine.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="FileHandlerObserverImpl.cpp" />
     <ClCompile Include="FileProfile.cpp" />
     <ClCompile Include="FileProfileObserverImpl.cpp" />
     <ClCompile Include="Identity.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="LateValue.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

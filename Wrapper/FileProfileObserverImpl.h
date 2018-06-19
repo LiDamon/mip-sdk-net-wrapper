@@ -1,5 +1,8 @@
 #pragma once
 
+#include <exception>
+#include <memory>
+
 #include "mip/file/file_profile.h"
 
 namespace CLI

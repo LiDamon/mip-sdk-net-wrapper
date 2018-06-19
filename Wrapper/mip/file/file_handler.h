@@ -68,10 +68,10 @@ public:
     // */
     //virtual void OnGetProtectionSuccess(const std::shared_ptr<UserPolicy>& userPolicy, const std::shared_ptr<void>& context) = 0;
 
-    /**
-     * @brief Called when retrieving the protection policy (from the file) failed due to an error.
-     */
-    virtual void OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context) = 0;
+    ///**
+    // * @brief Called when retrieving the protection policy (from the file) failed due to an error.
+    // */
+    //virtual void OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context) = 0;
 
     /**
      * @brief Called when committing the changes to the file were successful.

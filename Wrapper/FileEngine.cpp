@@ -3,6 +3,7 @@
 
 #include "Converters.h"
 #include "FileEngine.h"
+#include "FileHandlerObserverImpl.h"
 
 namespace CLI
 {
@@ -71,4 +72,37 @@ namespace CLI
 
 		m_Instance->SetCustomSettings(vector);
 	}
+
+
+	array<CLI::Label^>^ FileEngine::ListSensitivityLabels()
+	{
+		auto mipLabels = m_Instance->get()->ListSensitivityLabels();
+
+		auto arr = gcnew array<Label^>(mipLabels.size());
+
+		int i = 0;
+		for (auto const& mipLabel : mipLabels)
+		{
+			auto label = gcnew Label(mipLabel.get());
+
+			arr[i++] = label;
+		}
+
+		return arr;
+	}
+
+	FileHandler^ FileEngine::CreateFileHandler(
+		String^ inputFilePath)
+	{
+		auto observer = std::shared_ptr<mip::FileHandler::Observer>((mip::FileHandler::Observer*)(new FileHandlerObserverImpl()));
+
+		std::shared_ptr<mip::FileHandler> mipHandler = m_Instance->get()->CreateFileHandler(
+			net_string_to_std_string(inputFilePath),
+			observer);
+
+		std::shared_ptr<mip::FileHandler>* ptrHandler = new std::shared_ptr<mip::FileHandler>(mipHandler);
+
+		return gcnew FileHandler(ptrHandler);
+	}
+
 }

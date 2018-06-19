@@ -1,15 +1,15 @@
 #pragma once
 
-#include <string>
-#include <vector>
-
 #include "mip\file\file_engine.h"
 
+#include "FileHandler.h"
+#include "Label.h"
 #include "ManagedObject.h"
 #include "Pair.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::IO;
 
 namespace CLI
 {
@@ -53,7 +53,19 @@ namespace CLI
 			}
 		};
 
+
 		FileEngine(std::shared_ptr<mip::FileEngine>* ptr)
 			: ManagedObject(true, ptr) {}
+
+		array<CLI::Label^>^ ListSensitivityLabels();
+
+		FileHandler^ CreateFileHandler(
+			String^ inputFilePath);
+
+		// TODO:
+		//FileHandler^ CreateFileHandler(
+		//	System::IO::Stream inputStream,
+		//	String^ inputFileName);
+
 	};
 }

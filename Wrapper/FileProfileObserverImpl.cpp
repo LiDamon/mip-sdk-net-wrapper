@@ -1,5 +1,7 @@
-#include "Converters.h"
 #include "FileProfileObserverImpl.h"
+
+#include "Converters.h"
+#include "ExceptionHelper.h"
 #include "FileProfile.h"
 #include "LateValue.h"
 #include "UnmanagedObject.h"
@@ -8,20 +10,6 @@ using namespace System;
 
 namespace CLI
 {
-	System::String^ getExceptionMessage(std::exception_ptr e)
-	{
-		System::String^ msg = nullptr;
-
-		try { std::rethrow_exception(e); }
-		catch (const std::exception &e)
-		{
-			msg = std_string_to_net_string(e.what());
-		}
-
-		return msg;
-	}
-
-
 	void FileProfileObserverImpl::OnLoadSuccess(const std::shared_ptr<mip::FileProfile>& profile, const std::shared_ptr<void>& context)
 	{
 		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileProfile^>>*>(context.get());
@@ -37,7 +25,7 @@ namespace CLI
 		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileProfile^>>*>(context.get());
 		CLI::LateValue<CLI::FileProfile^>^ lateValue = unmanagedLateValue->GetInstance();
 
-		lateValue->SetError(gcnew System::Exception(getExceptionMessage(error)));
+		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
 
 	void FileProfileObserverImpl::OnAddEngineSuccess(const std::shared_ptr<mip::FileEngine>& engine, const std::shared_ptr<void>& context)
@@ -55,7 +43,7 @@ namespace CLI
 		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileEngine^>>*>(context.get());
 		CLI::LateValue<CLI::FileEngine^>^ lateValue = unmanagedLateValue->GetInstance();
 
-		lateValue->SetError(gcnew System::Exception(getExceptionMessage(error)));
+		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
 
 

@@ -1,6 +1,8 @@
 ## --------------------------
 ## Config ignore
 ## --------------------------
+#  See: git update-index --assume-unchanged <filename>
+#       git update-index --no-assume-unchanged <filename>
 CsConsumer/App.config
 
 ## --------------------------

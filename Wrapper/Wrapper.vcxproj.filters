@@ -27,9 +27,6 @@
     <ClCompile Include="Identity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ITokenProvider.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AuthDelegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,16 +42,18 @@
     <ClCompile Include="LateValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="app.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandlerObserverImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileEngine.h">
@@ -64,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ManagedObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -90,16 +86,25 @@
     <ClInclude Include="FileProfileObserverImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UnmanagedLateValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LateValue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UnmanagedObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ManagedSharedObject.h">
+    <ClInclude Include="Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandlerObserverImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
