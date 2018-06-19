@@ -4,6 +4,7 @@
 #include "Converters.h"
 #include "FileEngine.h"
 #include "FileHandlerObserverImpl.h"
+#include "StreamWrapper.h"
 
 namespace CLI
 {
@@ -97,6 +98,24 @@ namespace CLI
 		auto observer = std::shared_ptr<mip::FileHandler::Observer>((mip::FileHandler::Observer*)(new FileHandlerObserverImpl()));
 
 		std::shared_ptr<mip::FileHandler> mipHandler = m_Instance->get()->CreateFileHandler(
+			net_string_to_std_string(inputFilePath),
+			observer);
+
+		std::shared_ptr<mip::FileHandler>* ptrHandler = new std::shared_ptr<mip::FileHandler>(mipHandler);
+
+		return gcnew FileHandler(ptrHandler);
+	}
+
+	FileHandler^ FileEngine::CreateFileHandler(
+		System::IO::Stream^ inputStream,
+		String^ inputFilePath)
+	{
+		auto streamWrapper = std::make_shared<StreamWrapper>(inputStream);
+
+		auto observer = std::shared_ptr<mip::FileHandler::Observer>((mip::FileHandler::Observer*)(new FileHandlerObserverImpl()));
+
+		std::shared_ptr<mip::FileHandler> mipHandler = m_Instance->get()->CreateFileHandler(
+			streamWrapper,
 			net_string_to_std_string(inputFilePath),
 			observer);
 

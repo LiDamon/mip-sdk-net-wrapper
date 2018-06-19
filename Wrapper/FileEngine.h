@@ -62,10 +62,9 @@ namespace CLI
 		FileHandler^ CreateFileHandler(
 			String^ inputFilePath);
 
-		// TODO:
-		//FileHandler^ CreateFileHandler(
-		//	System::IO::Stream inputStream,
-		//	String^ inputFileName);
+		FileHandler^ CreateFileHandler(
+			System::IO::Stream^ inputStream,
+			String^ inputFileName);
 
 	};
 }

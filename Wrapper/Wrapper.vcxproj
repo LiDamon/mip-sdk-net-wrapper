@@ -153,6 +153,7 @@
     <ClInclude Include="ManagedObject.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StreamWrapper.h" />
     <ClInclude Include="UnmanagedObject.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StreamWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="mip_file_sdk.lib" />

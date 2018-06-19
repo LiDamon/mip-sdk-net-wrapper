@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using CLI;
 
 namespace CsConsumer
@@ -56,16 +57,40 @@ namespace CsConsumer
                     DisplayLabel("", label);
                 }
 
+
                 const string filePath = @"Unlabelled.docx";
 
-                var fileHandler = fileEngine.CreateFileHandler(filePath);
+                Console.WriteLine();
+                Console.WriteLine("Testing File Path Support:");
+                Console.WriteLine("==========================");
 
-                var lateLabel = new LateValue<ContentLabel>();
-                fileHandler.GetLabelAsync(lateLabel);
-                ContentLabel contentLabel = lateLabel.AwaitValue();
+                var fileHandler_Path = fileEngine.CreateFileHandler(filePath);
+
+                var lateLabel_Path = new LateValue<ContentLabel>();
+                fileHandler_Path.GetLabelAsync(lateLabel_Path);
+                ContentLabel contentLabel_Path = lateLabel_Path.AwaitValue();
 
                 Console.WriteLine();
-                Console.WriteLine("File: " + filePath + " has content label " + contentLabel.Label.Name);
+                Console.WriteLine("File: " + filePath + " has content label: " + contentLabel_Path?.Label?.Name);
+
+
+                Console.WriteLine();
+                Console.WriteLine("Testing Stream Support:");
+                Console.WriteLine("=======================");
+
+                using (Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    var fileHandler_Stream = fileEngine.CreateFileHandler(stream, filePath);
+
+                    var lateLabel_Stream = new LateValue<ContentLabel>();
+                    fileHandler_Stream.GetLabelAsync(lateLabel_Stream);
+                    ContentLabel contentLabel_Stream = lateLabel_Stream.AwaitValue();
+
+                    Console.WriteLine();
+                    Console.WriteLine("File: " + filePath + " has content label: " + contentLabel_Stream?.Label?.Name);
+                }
+
+
             }
             catch (Exception ex)
             {
