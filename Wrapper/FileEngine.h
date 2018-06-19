@@ -25,6 +25,7 @@ namespace CLI
 
 			Settings(String^ id, String^ clientData, String^ locale);
 
+		public:
 			property String^ Id
 			{
 				String^ get();
@@ -54,9 +55,11 @@ namespace CLI
 		};
 
 
+	internal:
 		FileEngine(std::shared_ptr<mip::FileEngine>* ptr)
 			: ManagedObject(true, ptr) {}
 
+	public:
 		array<CLI::Label^>^ ListSensitivityLabels();
 
 		FileHandler^ CreateFileHandler(

@@ -15,6 +15,7 @@ namespace CLI
 	public:
 		ApplicationInfo(String^ applicationId, String^ friendlyName);
 
+	public:
 		property String^ ApplicationId
 		{
 			String^ get();

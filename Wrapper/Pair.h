@@ -16,6 +16,7 @@ namespace CLI
 		{
 		}
 
+	public:
 		property TFirst First
 		{
 			TFirst get() { return m_first; }

@@ -20,11 +20,6 @@ namespace CLI
 		ref class Settings : public ManagedObject<mip::FileProfile::Settings>
 		{
 		public:
-			/**
-			* @brief Interface for configuring the profile.
-			*
-			* @param observer A class implementing the FileHandler::Observer interface. Can be nullptr.
-			*/
 			Settings(
 				String^ path,
 				bool useInMemoryStorage,
@@ -32,6 +27,7 @@ namespace CLI
 				//Observer observer,
 				CLI::ApplicationInfo^ applicationInfo);
 
+		public:
 			property String^ Path
 			{
 				String^ get();

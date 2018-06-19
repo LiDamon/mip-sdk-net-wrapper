@@ -19,7 +19,6 @@ namespace CLI
 		array<Label^>^ m_Children = nullptr;
 
 	internal:
-
 		Label(mip::Label* label)
 			: ManagedObject(label)
 		{}
@@ -30,7 +29,6 @@ namespace CLI
 		{}
 
 	public:
-
 		property String^ Id
 		{
 			String^ get();

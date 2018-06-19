@@ -20,6 +20,7 @@ namespace CLI
 		{
 		}
 
+	public:
 		T^ GetInstance()
 		{
 			return m_Instance;

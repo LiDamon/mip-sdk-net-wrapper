@@ -9,7 +9,7 @@ namespace CLI
 		T * m_Instance;
 		bool m_owner;
 
-	public:
+	protected:
 		ManagedObject(T* instance)
 			: ManagedObject(true, instance)
 		{
@@ -21,6 +21,7 @@ namespace CLI
 		{
 		}
 
+	public:
 		virtual ~ManagedObject()
 		{
 			this->!ManagedObject();

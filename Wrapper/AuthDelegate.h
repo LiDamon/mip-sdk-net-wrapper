@@ -24,8 +24,6 @@ namespace CLI
 			OAuth2Challenge(mip::AuthDelegate::OAuth2Challenge* challenge);
 
 		public:
-			OAuth2Challenge(String^ authority, String^ resource);
-
 			property String^ Authority
 			{
 				String^ get();
@@ -43,9 +41,6 @@ namespace CLI
 			OAuth2Token(mip::AuthDelegate::OAuth2Token* token);
 
 		public:
-			OAuth2Token();
-			OAuth2Token(String^ accessToken);
-
 			property String^ AccessToken
 			{
 				String^ get();

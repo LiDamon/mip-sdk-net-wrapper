@@ -3,6 +3,7 @@
 #include "mip\file\file_handler.h"
 
 #include "ContentLabel.h"
+#include "LabelingOptions.h"
 #include "LateValue.h"
 #include "ManagedObject.h"
 
@@ -17,13 +18,22 @@ namespace CLI
 	public:
 		void GetLabelAsync(LateValue<ContentLabel^>^ lateContentLabel);
 
-		// TODO:
-		//void SetLabel(String^ labelId, LabelingOptions^ labelingOptions);
+		void SetLabel(String^ labelId, LabelingOptions^ labelingOptions);
 
 		void DeleteLabel(AssignmentMethod method, String^ justificationMessage);
 
 		// TODO:
 		//void GetProtectionAsync(LateValue<UserPolicy^>^ context);
 
+		void RemoveProtection();
+
+		void CommitAsync(String^ outputFilePath, LateValue<bool>^ lateResult);
+
+		void CommitAsync(System::IO::Stream^ outputStream, LateValue<bool>^ lateResult);
+
+		property String^ OutputFileName
+		{
+			String^ get();
+		}
 	};
 }

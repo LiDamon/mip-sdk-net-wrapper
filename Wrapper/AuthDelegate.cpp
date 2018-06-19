@@ -9,10 +9,10 @@ namespace CLI
 	 * CLI::AuthDelegate::OAuth2Challenge
 	 **************************************/
 
-	AuthDelegate::OAuth2Challenge::OAuth2Challenge(String^ authority, String^ resource)
-		: ManagedObject(new mip::AuthDelegate::OAuth2Challenge(net_string_to_std_string(authority), net_string_to_std_string(resource)))
-	{
-	}
+	//AuthDelegate::OAuth2Challenge::OAuth2Challenge(String^ authority, String^ resource)
+	//	: ManagedObject(new mip::AuthDelegate::OAuth2Challenge(net_string_to_std_string(authority), net_string_to_std_string(resource)))
+	//{
+	//}
 
 	AuthDelegate::OAuth2Challenge::OAuth2Challenge(mip::AuthDelegate::OAuth2Challenge* challenge)
 		: ManagedObject(false, challenge)
@@ -34,15 +34,15 @@ namespace CLI
 	 * CLI::AuthDelegate::OAuth2Token
 	 **************************************/
 
-	AuthDelegate::OAuth2Token::OAuth2Token()
-		: ManagedObject(new mip::AuthDelegate::OAuth2Token())
-	{
-	}
+	//AuthDelegate::OAuth2Token::OAuth2Token()
+	//	: ManagedObject(new mip::AuthDelegate::OAuth2Token())
+	//{
+	//}
 
-	AuthDelegate::OAuth2Token::OAuth2Token(String^ accessToken)
-		: ManagedObject(new mip::AuthDelegate::OAuth2Token(net_string_to_std_string(accessToken)))
-	{
-	}
+	//AuthDelegate::OAuth2Token::OAuth2Token(String^ accessToken)
+	//	: ManagedObject(new mip::AuthDelegate::OAuth2Token(net_string_to_std_string(accessToken)))
+	//{
+	//}
 
 	AuthDelegate::OAuth2Token::OAuth2Token(mip::AuthDelegate::OAuth2Token* token)
 		: ManagedObject(false, token)

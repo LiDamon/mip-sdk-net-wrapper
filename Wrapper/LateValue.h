@@ -15,6 +15,7 @@ namespace CLI
 	public:
 		LateValue();
 
+	public:
 		void SetValue(T value);
 
 		void SetError(System::Exception^ ex);
