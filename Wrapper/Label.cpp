@@ -50,7 +50,7 @@ namespace CLI
 		{
 			auto mipChildren = this->m_Instance->GetChildren();
 
-			auto arr = gcnew array<Label^>(mipChildren.size());
+			auto arr = gcnew array<Label^>((int)mipChildren.size());
 
 			int i = 0;
 			for (auto const& mipChild : mipChildren)

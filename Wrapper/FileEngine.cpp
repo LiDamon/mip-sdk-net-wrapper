@@ -43,7 +43,7 @@ namespace CLI
 	{
 		auto customSettings = m_Instance->GetCustomSettings();
 
-		auto arr = gcnew array<Pair<String^, String^>^>(customSettings.size());
+		auto arr = gcnew array<Pair<String^, String^>^>((int)customSettings.size());
 
 		int i = 0;
 		for (auto const& pair : customSettings)
@@ -79,7 +79,7 @@ namespace CLI
 	{
 		auto mipLabels = m_Instance->get()->ListSensitivityLabels();
 
-		auto arr = gcnew array<Label^>(mipLabels.size());
+		auto arr = gcnew array<Label^>((int)mipLabels.size());
 
 		int i = 0;
 		for (auto const& mipLabel : mipLabels)

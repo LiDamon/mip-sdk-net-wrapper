@@ -105,91 +105,94 @@ enum class UserPolicyType {
  */
 class UserPolicy {
 public:
-  /**
-   * @brief Acquire a UserPolicy from a serialized publishing license (PL)
-   * 
-   * @param serializedPolicy Serialized publishing license (PL) to be rehydrated into a UserPolicy
-   * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
-   *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()). This id will also be
-   *  checked when loading a policy from the offline cache (if supported by ResponseCacheFlags).
-   * @param authenticationCallback Callback used for the authentication process
-   * @param consentCallback Callback used if SDK requires any user consent during policy acquisition. If null, all
-   *  consents will be granted automatically.
-   * @param options Describes additional acquisition options (e.g. offline-only, etc.)
-   * @param cacheMask Describes whether and how acquisition response is cached to allow future offline acquisitions
-   * @param cancelState Cancellation token to allow application to cancel this operation at any time
-   * 
-   * @return GetUserPolicyResult object 
-   */
-  MIP_EXPORT static std::shared_ptr<mip::GetUserPolicyResult> Acquire(
-      const std::vector<unsigned char>& serializedPolicy,
-      const std::string& userId,
-      mip::AuthDelegate& authenticationCallback,
-      mip::ConsentCallback* consentCallback,
-      PolicyAcquisitionOptions options,
-      mip::ResponseCacheFlags cacheMask,
-      std::shared_ptr<std::atomic<bool>> cancelState);
 
-  /**
-   * @brief Creates a new UserPolicy from a template id
-   * 
-   * @param templateId RMS template to be applied to this UserPolicy
-   * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
-   *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
-   * @param authenticationCallback Callback used for the authentication process
-   * @param options Describes additional acquisition options (e.g. offline-only, etc.)
-   * @param signedAppData Signed app-specific data
-   * @param cancelState Cancellation token to allow application to cancel this operation at any time
-   * 
-   * @return New UserPolicy instance
-   */
-  MIP_EXPORT static std::shared_ptr<UserPolicy> CreateFromTemplateId(
-      const std::string& templateId,
-      const std::string& userId,
-      mip::AuthDelegate& authenticationCallback,
-      UserPolicyCreationOptions options,
-      const mip::AppDataHashMap& signedAppData,
-      std::shared_ptr<std::atomic<bool>> cancelState);
+// TODO: This code depends on the "#include <future>" part of the STL library, which is unsupported in C++/CLI.
 
-  /**
-   * @brief Creates a new UserPolicy from a TemplateDescriptor
-   * 
-   * @param templateDescriptor RMS template to be applied to this UserPolicy
-   * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
-   *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
-   * @param authenticationCallback Callback used for the authentication process
-   * @param options Describes additional acquisition options (e.g. offline-only, etc.)
-   * @param signedAppData Signed app-specific data
-   * @param cancelState Cancellation token to allow application to cancel this operation at any time
-   * 
-   * @return New UserPolicy instance
-   */
-  MIP_EXPORT static std::shared_ptr<UserPolicy> CreateFromTemplateDescriptor(
-      const TemplateDescriptor& templateDescriptor,
-      const std::string& userId,
-      mip::AuthDelegate& authenticationCallback,
-      UserPolicyCreationOptions options,
-      const mip::AppDataHashMap& signedAppData,
-      std::shared_ptr<std::atomic<bool>> cancelState);
+  ///**
+  // * @brief Acquire a UserPolicy from a serialized publishing license (PL)
+  // * 
+  // * @param serializedPolicy Serialized publishing license (PL) to be rehydrated into a UserPolicy
+  // * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
+  // *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()). This id will also be
+  // *  checked when loading a policy from the offline cache (if supported by ResponseCacheFlags).
+  // * @param authenticationCallback Callback used for the authentication process
+  // * @param consentCallback Callback used if SDK requires any user consent during policy acquisition. If null, all
+  // *  consents will be granted automatically.
+  // * @param options Describes additional acquisition options (e.g. offline-only, etc.)
+  // * @param cacheMask Describes whether and how acquisition response is cached to allow future offline acquisitions
+  // * @param cancelState Cancellation token to allow application to cancel this operation at any time
+  // * 
+  // * @return GetUserPolicyResult object 
+  // */
+  //MIP_EXPORT static std::shared_ptr<mip::GetUserPolicyResult> Acquire(
+  //    const std::vector<unsigned char>& serializedPolicy,
+  //    const std::string& userId,
+  //    mip::AuthDelegate& authenticationCallback,
+  //    mip::ConsentCallback* consentCallback,
+  //    PolicyAcquisitionOptions options,
+  //    mip::ResponseCacheFlags cacheMask,
+  //    std::shared_ptr<std::atomic<bool>> cancelState);
 
-  /**
-   * @brief Creates a new UserPolicy from a PolicyDescriptor
-   * 
-   * @param policyDescriptor Ad hoc description of policy
-   * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
-   *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
-   * @param authenticationCallback Callback used for the authentication process
-   * @param options Describes additional acquisition options (e.g. offline-only, etc.)
-   * @param cancelState Cancellation token to allow application to cancel this operation at any time
-   * 
-   * @return New UserPolicy instance
-   */
-  MIP_EXPORT static std::shared_ptr<UserPolicy> Create(
-      mip::PolicyDescriptor& policyDescriptor,
-      const std::string& userId,
-      mip::AuthDelegate& authenticationCallback,
-      UserPolicyCreationOptions options,
-      std::shared_ptr<std::atomic<bool>> cancelState);
+  ///**
+  // * @brief Creates a new UserPolicy from a template id
+  // * 
+  // * @param templateId RMS template to be applied to this UserPolicy
+  // * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
+  // *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
+  // * @param authenticationCallback Callback used for the authentication process
+  // * @param options Describes additional acquisition options (e.g. offline-only, etc.)
+  // * @param signedAppData Signed app-specific data
+  // * @param cancelState Cancellation token to allow application to cancel this operation at any time
+  // * 
+  // * @return New UserPolicy instance
+  // */
+  //MIP_EXPORT static std::shared_ptr<UserPolicy> CreateFromTemplateId(
+  //    const std::string& templateId,
+  //    const std::string& userId,
+  //    mip::AuthDelegate& authenticationCallback,
+  //    UserPolicyCreationOptions options,
+  //    const mip::AppDataHashMap& signedAppData,
+  //    std::shared_ptr<std::atomic<bool>> cancelState);
+
+  ///**
+  // * @brief Creates a new UserPolicy from a TemplateDescriptor
+  // * 
+  // * @param templateDescriptor RMS template to be applied to this UserPolicy
+  // * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
+  // *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
+  // * @param authenticationCallback Callback used for the authentication process
+  // * @param options Describes additional acquisition options (e.g. offline-only, etc.)
+  // * @param signedAppData Signed app-specific data
+  // * @param cancelState Cancellation token to allow application to cancel this operation at any time
+  // * 
+  // * @return New UserPolicy instance
+  // */
+  //MIP_EXPORT static std::shared_ptr<UserPolicy> CreateFromTemplateDescriptor(
+  //    const TemplateDescriptor& templateDescriptor,
+  //    const std::string& userId,
+  //    mip::AuthDelegate& authenticationCallback,
+  //    UserPolicyCreationOptions options,
+  //    const mip::AppDataHashMap& signedAppData,
+  //    std::shared_ptr<std::atomic<bool>> cancelState);
+
+  ///**
+  // * @brief Creates a new UserPolicy from a PolicyDescriptor
+  // * 
+  // * @param policyDescriptor Ad hoc description of policy
+  // * @param userId Email address of the user trying to consume the protected content. This id will be used during OAuth
+  // *  token acquisition (i.e. it will be the identity used in AuthDelegate::AcquireOAuth2Token()).
+  // * @param authenticationCallback Callback used for the authentication process
+  // * @param options Describes additional acquisition options (e.g. offline-only, etc.)
+  // * @param cancelState Cancellation token to allow application to cancel this operation at any time
+  // * 
+  // * @return New UserPolicy instance
+  // */
+  //MIP_EXPORT static std::shared_ptr<UserPolicy> Create(
+  //    mip::PolicyDescriptor& policyDescriptor,
+  //    const std::string& userId,
+  //    mip::AuthDelegate& authenticationCallback,
+  //    UserPolicyCreationOptions options,
+  //    std::shared_ptr<std::atomic<bool>> cancelState);
 
   /**
    * @brief Clear protection policy cache

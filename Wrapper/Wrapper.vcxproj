@@ -154,9 +154,13 @@
     <ClInclude Include="LateValue.h" />
     <ClInclude Include="ManagedObject.h" />
     <ClInclude Include="Pair.h" />
+    <ClInclude Include="PolicyDescriptor.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StreamWrapper.h" />
+    <ClInclude Include="TemplateDescriptor.h" />
     <ClInclude Include="UnmanagedObject.h" />
+    <ClInclude Include="UserPolicy.h" />
+    <ClInclude Include="UserPolicyType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationInfo.cpp" />
@@ -172,6 +176,7 @@
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="LabelingOptions.cpp" />
     <ClCompile Include="LateValue.cpp" />
+    <ClCompile Include="PolicyDescriptor.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -179,6 +184,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StreamWrapper.cpp" />
+    <ClCompile Include="TemplateDescriptor.cpp" />
+    <ClCompile Include="UserPolicy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="mip_file_sdk.lib" />

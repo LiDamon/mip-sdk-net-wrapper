@@ -6,6 +6,8 @@
 #include "LabelingOptions.h"
 #include "LateValue.h"
 #include "ManagedObject.h"
+#include "PolicyDescriptor.h"
+#include "UserPolicy.h"
 
 namespace CLI
 {
@@ -22,8 +24,9 @@ namespace CLI
 
 		void DeleteLabel(AssignmentMethod method, String^ justificationMessage);
 
-		// TODO:
-		//void GetProtectionAsync(LateValue<UserPolicy^>^ context);
+		void GetProtectionAsync(LateValue<UserPolicy^>^ lateUserPolicy);
+
+		void SetCustomPermissions(PolicyDescriptor^ policyDescriptor);
 
 		void RemoveProtection();
 

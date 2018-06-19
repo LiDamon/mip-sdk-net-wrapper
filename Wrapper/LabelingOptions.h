@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vcclr.h>
-
 #include "mip/file/labeling_options.h"
 
 #include "AssignmentMethod.h"

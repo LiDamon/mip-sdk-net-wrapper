@@ -3,6 +3,7 @@
 #include "Converters.h"
 #include "StreamWrapper.h"
 #include "UnmanagedObject.h"
+#include "UserPolicy.h"
 
 namespace CLI
 {
@@ -28,9 +29,19 @@ namespace CLI
 		m_Instance->get()->DeleteLabel(mipMethod, net_string_to_std_string(justificationMessage));
 	}
 
-	// TODO:
-	//void FileHandler::GetProtectionAsync(LateValue<UserPolicy^>^ context);
+	void FileHandler::GetProtectionAsync(LateValue<UserPolicy^>^ lateUserPolicy)
+	{
+		auto ptr = std::make_shared<UnmanagedObject<LateValue<UserPolicy^>>>(lateUserPolicy);
 
+		m_Instance->get()->GetProtectionAsync(ptr);
+	}
+
+	void FileHandler::SetCustomPermissions(PolicyDescriptor^ policyDescriptor)
+	{
+		std::shared_ptr<mip::PolicyDescriptor> mipPolicyDescriptor = *(policyDescriptor->GetInstance());
+
+		m_Instance->get()->SetCustomPermissions(mipPolicyDescriptor);
+	}
 
 	void FileHandler::RemoveProtection()
 	{

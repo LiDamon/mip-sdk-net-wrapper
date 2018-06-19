@@ -33,7 +33,7 @@
 #ifndef API_MIP_RMS_TEMPLATE_DESCRIPTOR_H_
 #define API_MIP_RMS_TEMPLATE_DESCRIPTOR_H_
 
-#include <future>
+//#include <future>
 #include <vector>
 
 #include "mip/common_types.h"
@@ -45,27 +45,30 @@ namespace mip {
  */
 class TemplateDescriptor {
 public:
-  /**
-   * @brief Get collection of templates available to a user
-   *
-   * @param userId The email address of the user for whom the templates
-   *  are being retrieved. This email address will be used to discover the RMS
-   *  service instance (either ADRMS server or Azure RMS) that the user's
-   *  organization is using. This parameter is also used as a hint for userId
-   *  for user authentication, i.e., it will be passed to
-   *  AuthDelegate.AcquireOAuth2Token() in the AuthenticationParameters
-   *  structure.
-   * @param authenticationCallback Callback to utilize for auth
-   * @param launchType Async launch type
-   * @param cancelState Cancellation token to allow application to cancel this operation at any time
-   *
-   * @return Collection of templates available to a user
-   */
-  MIP_EXPORT static std::shared_future<std::vector<std::shared_ptr<TemplateDescriptor>>> GetTemplateListAsync(
-    const std::string& userId,
-    mip::AuthDelegate& authenticationCallback,
-    std::launch launchType,
-    std::shared_ptr<std::atomic<bool>> cancelState = nullptr);
+
+// TODO: This code depends on the "#include <future>" part of the STL library, which is unsupported in C++/CLI.
+
+  ///**
+  // * @brief Get collection of templates available to a user
+  // *
+  // * @param userId The email address of the user for whom the templates
+  // *  are being retrieved. This email address will be used to discover the RMS
+  // *  service instance (either ADRMS server or Azure RMS) that the user's
+  // *  organization is using. This parameter is also used as a hint for userId
+  // *  for user authentication, i.e., it will be passed to
+  // *  AuthDelegate.AcquireOAuth2Token() in the AuthenticationParameters
+  // *  structure.
+  // * @param authenticationCallback Callback to utilize for auth
+  // * @param launchType Async launch type
+  // * @param cancelState Cancellation token to allow application to cancel this operation at any time
+  // *
+  // * @return Collection of templates available to a user
+  // */
+  //MIP_EXPORT static std::shared_future<std::vector<std::shared_ptr<TemplateDescriptor>>> GetTemplateListAsync(
+  //  const std::string& userId,
+  //  mip::AuthDelegate& authenticationCallback,
+  //  std::launch launchType,
+  //  std::shared_ptr<std::atomic<bool>> cancelState = nullptr);
 
   /**
    * @brief Gets template id

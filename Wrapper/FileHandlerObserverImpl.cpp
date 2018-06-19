@@ -6,6 +6,7 @@
 #include "FileHandler.h"
 #include "LateValue.h"
 #include "UnmanagedObject.h"
+#include "UserPolicy.h"
 
 using namespace System;
 
@@ -30,19 +31,23 @@ namespace CLI
 	}
 	
 
-	// TODO:
-	//
-	//void FileHandlerObserverImpl::OnGetProtectionSuccess(const std::shared_ptr<mip::UserPolicy>& userPolicy, const std::shared_ptr<void>& context)
-	//{
-	//}
-	//
-	//void FileHandlerObserverImpl::OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context)
-	//{
-	//	auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::UserPolicy^>>*>(context.get());
-	//	CLI::LateValue<CLI::UserPolicy^>^ lateValue = unmanagedLateValue->GetInstance();
-	//
-	//	lateValue->SetError(gcnew System::Exception(getExceptionMessage(error)));
-	//}
+	void FileHandlerObserverImpl::OnGetProtectionSuccess(const std::shared_ptr<mip::UserPolicy>& userPolicy, const std::shared_ptr<void>& context)
+	{
+		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::UserPolicy^>>*>(context.get());
+		CLI::LateValue<CLI::UserPolicy^>^ lateValue = unmanagedLateValue->GetInstance();
+
+		std::shared_ptr<mip::UserPolicy>* ptrUserPolicy = new std::shared_ptr<mip::UserPolicy>(userPolicy);
+
+		lateValue->SetValue(gcnew UserPolicy(ptrUserPolicy));
+	}
+	
+	void FileHandlerObserverImpl::OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context)
+	{
+		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::UserPolicy^>>*>(context.get());
+		CLI::LateValue<CLI::UserPolicy^>^ lateValue = unmanagedLateValue->GetInstance();
+	
+		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
+	}
 
 
 	void FileHandlerObserverImpl::OnCommitSuccess(bool committed, const std::shared_ptr<void>& context)

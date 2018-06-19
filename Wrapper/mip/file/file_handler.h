@@ -32,7 +32,7 @@
 
 #include "mip/stream.h"
 #include "mip/file/labeling_options.h"
-//#include "mip/rms/user_policy.h"
+#include "mip/rms/user_policy.h"
 #include "mip/upe/content_label.h"
 
 namespace mip {
@@ -63,15 +63,15 @@ public:
      */
     virtual void OnGetLabelFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context) = 0;
 
-    ///**
-    // * @brief Called when the protection policy is retrieved (from the file) successfully.
-    // */
-    //virtual void OnGetProtectionSuccess(const std::shared_ptr<UserPolicy>& userPolicy, const std::shared_ptr<void>& context) = 0;
+    /**
+     * @brief Called when the protection policy is retrieved (from the file) successfully.
+     */
+    virtual void OnGetProtectionSuccess(const std::shared_ptr<UserPolicy>& userPolicy, const std::shared_ptr<void>& context) = 0;
 
-    ///**
-    // * @brief Called when retrieving the protection policy (from the file) failed due to an error.
-    // */
-    //virtual void OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context) = 0;
+    /**
+     * @brief Called when retrieving the protection policy (from the file) failed due to an error.
+     */
+    virtual void OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context) = 0;
 
     /**
      * @brief Called when committing the changes to the file were successful.
@@ -123,12 +123,12 @@ public:
   */
   virtual void DeleteLabel(AssignmentMethod method, const std::string& justificationMessage) = 0;
 
-  ///**
-  // * @brief Sets custom permissions to the file.
-  // * 
-  // * @note Changes will not be written to the file until CommitAsync will be called.
-  // */
-  //virtual void SetCustomPermissions(const std::shared_ptr<PolicyDescriptor>& policyDescriptor) = 0;
+  /**
+   * @brief Sets custom permissions to the file.
+   * 
+   * @note Changes will not be written to the file until CommitAsync will be called.
+   */
+  virtual void SetCustomPermissions(const std::shared_ptr<PolicyDescriptor>& policyDescriptor) = 0;
 
   /**
    * @brief Removes protection from the file. If the file is labeled, the label will be lost.
