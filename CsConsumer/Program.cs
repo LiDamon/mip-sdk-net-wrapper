@@ -59,6 +59,13 @@ namespace CsConsumer
                 const string filePath = @"Unlabelled.docx";
 
                 var fileHandler = fileEngine.CreateFileHandler(filePath);
+
+                var lateLabel = new LateValue<ContentLabel>();
+                fileHandler.GetLabelAsync(lateLabel);
+                ContentLabel contentLabel = lateLabel.AwaitValue();
+
+                Console.WriteLine();
+                Console.WriteLine("File: " + filePath + " has content label " + contentLabel.Label.Name);
             }
             catch (Exception ex)
             {
