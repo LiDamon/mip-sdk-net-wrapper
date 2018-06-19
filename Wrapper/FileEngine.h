@@ -3,6 +3,7 @@
 #include "mip\file\file_engine.h"
 
 #include "FileHandler.h"
+#include "Identity.h"
 #include "Label.h"
 #include "ManagedObject.h"
 #include "Pair.h"
@@ -31,6 +32,12 @@ namespace CLI
 				String^ get();
 			}
 
+			property Identity^ Identity
+			{
+				CLI::Identity^ get();
+				void set(CLI::Identity^ value);
+			}
+
 			property String^ ClientData
 			{
 				String^ get();
@@ -41,16 +48,16 @@ namespace CLI
 				String^ get();
 			}
 
-			property String^ SessionId
-			{
-				String^ get();
-				void set(String^ value);
-			}
-
 			property array<Pair<String^, String^>^>^ CustomSettings
 			{
 				array<Pair<String^, String^>^>^ get();
 				void set(array<Pair<String^, String^>^>^ value);
+			}
+
+			property String^ SessionId
+			{
+				String^ get();
+				void set(String^ value);
 			}
 		};
 

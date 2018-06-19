@@ -151,6 +151,7 @@
     <ClInclude Include="Identity.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LabelingOptions.h" />
+    <ClInclude Include="LateAction.h" />
     <ClInclude Include="LateValue.h" />
     <ClInclude Include="ManagedObject.h" />
     <ClInclude Include="Pair.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Identity.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="LabelingOptions.cpp" />
+    <ClCompile Include="LateAction.cpp" />
     <ClCompile Include="LateValue.cpp" />
     <ClCompile Include="PolicyDescriptor.cpp" />
     <ClCompile Include="stdafx.cpp">

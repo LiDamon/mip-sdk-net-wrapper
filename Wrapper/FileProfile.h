@@ -3,11 +3,11 @@
 #include <vcclr.h>
 
 #include "mip/file/file_profile.h"
-#include "mip/file/file_profile.h"
 
 #include "ApplicationInfo.h"
 #include "AuthDelegate.h"
 #include "FileEngine.h"
+#include "LateAction.h"
 #include "LateValue.h"
 
 using namespace System;
@@ -24,8 +24,10 @@ namespace CLI
 				String^ path,
 				bool useInMemoryStorage,
 				CLI::AuthDelegate^ authDelegate,
-				//Observer observer,
 				CLI::ApplicationInfo^ applicationInfo);
+
+		internal:
+			Settings(mip::FileProfile::Settings* settings);
 
 		public:
 			property String^ Path
@@ -55,9 +57,6 @@ namespace CLI
 
 			void SetSkipTelemetryInit();
 
-			/// <summary>
-			/// Gets and sets the profile session id.
-			/// </summary>
 			property String^ SessionId
 			{
 				String^ get();
@@ -69,14 +68,28 @@ namespace CLI
 			CLI::ApplicationInfo^ m_ApplicationInfo;
 		};
 
+	public:
 		static void LoadAsync(Settings^ settings, CLI::LateValue<FileProfile^>^ lateValue);
 
+		static String^ GetVersion();
+
+	internal:
 		FileProfile(std::shared_ptr<mip::FileProfile>* ptr)
 			: ManagedObject(true, ptr) {}
+
+	public:
+		Settings^ GetSettings();
+
+		void ListEnginesAsync(LateValue<array<String^>^>^ lateEngineIds);
+
+		void UnloadEngineAsync(String^ engineId, LateAction^ action);
 
 		void AddEngineAsync(
 			FileEngine::Settings^ settings,
 			CLI::LateValue<FileEngine^>^ lateValue);
+
+		void DeleteEngineAsync(String^ engineId, LateAction^ action);
+
 	};
 
 

@@ -2,6 +2,7 @@
 
 #include "Converters.h"
 #include "FileProfileObserverImpl.h"
+#include "LateAction.h"
 #include "LateValue.h"
 #include "UnmanagedObject.h"
 
@@ -11,7 +12,6 @@ namespace CLI
 		String^ path,
 		bool useInMemoryStorage,
 		CLI::AuthDelegate^ authDelegate,
-		//std::shared_ptr<Observer> observer,
 		CLI::ApplicationInfo^ applicationInfo)
 		: ManagedObject(new mip::FileProfile::Settings(
 			net_string_to_std_string(path),
@@ -21,6 +21,11 @@ namespace CLI
 			*(applicationInfo->GetInstance()))),
 		m_AuthDelegate(authDelegate),
 		m_ApplicationInfo(applicationInfo)
+	{
+	}
+
+	FileProfile::Settings::Settings(mip::FileProfile::Settings* ptr)
+		: ManagedObject(ptr)
 	{
 	}
 
@@ -72,6 +77,32 @@ namespace CLI
 		mip::FileProfile::LoadAsync(*(settings->GetInstance()), ptr);
 	}
 
+	String^ FileProfile::GetVersion()
+	{
+		auto version = mip::FileProfile::GetVersion();
+		return char_array_to_net_string(version);
+	}
+
+	FileProfile::Settings^ FileProfile::GetSettings()
+	{
+		auto settings = m_Instance->get()->GetSettings();
+		return gcnew FileProfile::Settings(&(settings));
+	}
+
+	void FileProfile::ListEnginesAsync(LateValue<array<String^>^>^ lateEngineIds)
+	{
+		auto ptr = std::make_shared<UnmanagedObject<LateValue<array<String^>^>>>(lateEngineIds);
+		this->GetInstance()->get()->ListEnginesAsync(ptr);
+	}
+
+	void FileProfile::UnloadEngineAsync(String^ engineId, LateAction^ action)
+	{
+		auto ptr = std::make_shared<UnmanagedObject<LateAction>>(action);
+		this->GetInstance()->get()->UnloadEngineAsync(
+			net_string_to_std_string(engineId),
+			ptr);
+	}
+
 	void FileProfile::AddEngineAsync(
 		FileEngine::Settings^ settings,
 		CLI::LateValue<FileEngine^>^ lateValue)
@@ -79,4 +110,13 @@ namespace CLI
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<FileEngine^>>>(lateValue);
 		this->GetInstance()->get()->AddEngineAsync(*(settings->GetInstance()), ptr);
 	}
+
+	void FileProfile::DeleteEngineAsync(String^ engineId, LateAction^ action)
+	{
+		auto ptr = std::make_shared<UnmanagedObject<LateAction>>(action);
+		this->GetInstance()->get()->DeleteEngineAsync(
+			net_string_to_std_string(engineId),
+			ptr);
+	}
+
 }

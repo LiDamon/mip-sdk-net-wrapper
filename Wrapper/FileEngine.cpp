@@ -18,6 +18,19 @@ namespace CLI
 		return std_string_to_net_string(m_Instance->GetId());
 	}
 
+	Identity^ FileEngine::Settings::Identity::get()
+	{
+		mip::Identity identity = m_Instance->GetIdentity();
+		mip::Identity* ptr = &(identity);
+
+		return gcnew CLI::Identity(ptr);
+	}
+
+	void FileEngine::Settings::Identity::set(CLI::Identity^ value)
+	{
+		m_Instance->SetIdentity(*(value->GetInstance()));
+	}
+
 	String^ FileEngine::Settings::ClientData::get()
 	{
 		return std_string_to_net_string(m_Instance->GetClientData());
