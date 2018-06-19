@@ -19,14 +19,10 @@ namespace NetMip
 		array<Label^>^ m_Children = nullptr;
 
 	internal:
-		Label(mip::Label* label)
-			: ManagedObject(label)
-		{}
+		Label(mip::Label* label);
 
-		Label(Label^ parent, mip::Label* label)
-			: ManagedObject(label),
-			  m_Parent(parent)
-		{}
+	private:
+		Label(Label^ parent, mip::Label* label);
 
 	public:
 		property String^ Id

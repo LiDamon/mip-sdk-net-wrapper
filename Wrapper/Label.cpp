@@ -4,6 +4,25 @@
 
 namespace NetMip
 {
+	Label::Label(mip::Label* label)
+		: ManagedObject(label)
+	{
+		auto weakParent = label->GetParent();
+		if (auto tmp = weakParent.lock())
+		{
+			if (mip::Label* parent = tmp.get())
+			{
+				m_Parent = gcnew Label(parent);
+			}
+		}
+	}
+
+	Label::Label(Label^ parent, mip::Label* label)
+		: ManagedObject(label),
+		  m_Parent(parent)
+	{
+	}
+
 	String^ Label::Id::get()
 	{
 		return std_string_to_net_string(this->m_Instance->GetId());
