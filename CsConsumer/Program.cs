@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using NetMip;
 
@@ -14,41 +15,24 @@ namespace CsConsumer
 
             try
             {
-                AuthDelegate authDelegate = new AuthDelegateImpl(new AdalTokenProvider(clientId));
-
-                var applicationInfo = new ApplicationInfo(
-                    applicationId,
-                    applicationName);
-
                 string storagePath = System.IO.Path.GetTempPath() + @"\sample_app_data";
 
-
-                var settings = new FileProfile.Settings(storagePath, false, authDelegate, applicationInfo);
-
-                var lateFileProfile = new LateValue<FileProfile>();
-
                 Console.WriteLine();
-                Console.WriteLine("Async load file profile...");
+                Console.WriteLine("Create the FileApi:");
+                Console.WriteLine("-------------------");
 
-                FileProfile.LoadAsync(settings, lateFileProfile);
-                FileProfile profile = lateFileProfile.AwaitValue();
-
-
-                FileEngine.Settings engineSettings = new FileEngine.Settings("1234", "");
-
-                var lateFileEngine = new LateValue<FileEngine>();
-
-                Console.WriteLine();
-                Console.WriteLine("Async add engine...");
-
-                profile.AddEngineAsync(engineSettings, lateFileEngine);
-                FileEngine fileEngine = lateFileEngine.AwaitValue();
+                FileApi fileApi = new FileApi(
+                    new AdalTokenProvider(clientId),
+                    applicationId,
+                    applicationName,
+                    storagePath);
 
 
                 Console.WriteLine();
-                Console.WriteLine("Getting labels...");
+                Console.WriteLine("List Available Labels:");
+                Console.WriteLine("----------------------");
 
-                Label[] labels = fileEngine.ListSensitivityLabels();
+                IEnumerable<Label> labels = fileApi.ListLabels();
 
                 Console.WriteLine();
                 Console.WriteLine("Available labels:");
@@ -62,35 +46,25 @@ namespace CsConsumer
 
                 Console.WriteLine();
                 Console.WriteLine("Testing File Path Support:");
-                Console.WriteLine("==========================");
+                Console.WriteLine("--------------------------");
 
-                var fileHandler_Path = fileEngine.CreateFileHandler(filePath);
-
-                var lateLabel_Path = new LateValue<ContentLabel>();
-                fileHandler_Path.GetLabelAsync(lateLabel_Path);
-                ContentLabel contentLabel_Path = lateLabel_Path.AwaitValue();
+                string fileLabelName = fileApi.GetFileLabel(filePath);
 
                 Console.WriteLine();
-                Console.WriteLine("File: " + filePath + " has content label: " + contentLabel_Path?.Label?.Name);
+                Console.WriteLine("File: " + filePath + " has content label: " + fileLabelName);
 
 
                 Console.WriteLine();
                 Console.WriteLine("Testing Stream Support:");
-                Console.WriteLine("=======================");
+                Console.WriteLine("-----------------------");
 
                 using (Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    var fileHandler_Stream = fileEngine.CreateFileHandler(stream, filePath);
-
-                    var lateLabel_Stream = new LateValue<ContentLabel>();
-                    fileHandler_Stream.GetLabelAsync(lateLabel_Stream);
-                    ContentLabel contentLabel_Stream = lateLabel_Stream.AwaitValue();
+                    string fileLabelName_Stream = fileApi.GetFileLabel(stream, filePath);
 
                     Console.WriteLine();
-                    Console.WriteLine("File: " + filePath + " has content label: " + contentLabel_Stream?.Label?.Name);
+                    Console.WriteLine("File: " + filePath + " has content label: " + fileLabelName_Stream);
                 }
-
-
             }
             catch (Exception ex)
             {

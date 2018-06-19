@@ -9,7 +9,18 @@
 namespace NetMip
 {
 	FileEngine::Settings::Settings(String^ id, String^ clientData, String^ locale)
-		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(net_string_to_std_string(id), net_string_to_std_string(clientData), net_string_to_std_string(locale)))
+		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(
+			net_string_to_std_string(id),
+			net_string_to_std_string(clientData),
+			net_string_to_std_string(locale)))
+	{
+	}
+
+	FileEngine::Settings::Settings(NetMip::Identity^ identity, String^ clientData, String^ locale)
+		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(
+			*(identity->GetInstance()),
+			net_string_to_std_string(clientData),
+			net_string_to_std_string(locale)))
 	{
 	}
 

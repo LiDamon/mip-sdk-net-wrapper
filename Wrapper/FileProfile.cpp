@@ -77,7 +77,7 @@ namespace NetMip
 		mip::FileProfile::LoadAsync(*(settings->GetInstance()), ptr);
 	}
 
-	String^ FileProfile::GetVersion()
+	String^ FileProfile::GetSdkVersion()
 	{
 		auto version = mip::FileProfile::GetVersion();
 		return char_array_to_net_string(version);
