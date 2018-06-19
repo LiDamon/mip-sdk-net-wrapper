@@ -7,7 +7,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	ApplicationInfo::ApplicationInfo(String^ applicationId, String^ friendlyName)
 		: ManagedObject(new mip::ApplicationInfo())

@@ -12,7 +12,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class FileProfile : public ManagedObject<std::shared_ptr<mip::FileProfile>>
 	{
@@ -23,8 +23,8 @@ namespace CLI
 			Settings(
 				String^ path,
 				bool useInMemoryStorage,
-				CLI::AuthDelegate^ authDelegate,
-				CLI::ApplicationInfo^ applicationInfo);
+				NetMip::AuthDelegate^ authDelegate,
+				NetMip::ApplicationInfo^ applicationInfo);
 
 		internal:
 			Settings(mip::FileProfile::Settings* settings);
@@ -40,14 +40,14 @@ namespace CLI
 				bool get();
 			}
 
-			property CLI::AuthDelegate^ AuthDelegate
+			property NetMip::AuthDelegate^ AuthDelegate
 			{
-				CLI::AuthDelegate^ get();
+				NetMip::AuthDelegate^ get();
 			}
 
-			property CLI::ApplicationInfo^ ApplicationInfo
+			property NetMip::ApplicationInfo^ ApplicationInfo
 			{
-				CLI::ApplicationInfo^ get();
+				NetMip::ApplicationInfo^ get();
 			}
 
 			property bool SkipTelemetryInit
@@ -64,12 +64,12 @@ namespace CLI
 			}
 
 		private:
-			CLI::AuthDelegate^ m_AuthDelegate;
-			CLI::ApplicationInfo^ m_ApplicationInfo;
+			NetMip::AuthDelegate^ m_AuthDelegate;
+			NetMip::ApplicationInfo^ m_ApplicationInfo;
 		};
 
 	public:
-		static void LoadAsync(Settings^ settings, CLI::LateValue<FileProfile^>^ lateValue);
+		static void LoadAsync(Settings^ settings, NetMip::LateValue<FileProfile^>^ lateValue);
 
 		static String^ GetVersion();
 
@@ -86,7 +86,7 @@ namespace CLI
 
 		void AddEngineAsync(
 			FileEngine::Settings^ settings,
-			CLI::LateValue<FileEngine^>^ lateValue);
+			NetMip::LateValue<FileEngine^>^ lateValue);
 
 		void DeleteEngineAsync(String^ engineId, LateAction^ action);
 

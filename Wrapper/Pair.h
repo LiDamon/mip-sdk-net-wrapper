@@ -1,6 +1,6 @@
 #pragma once
 
-namespace CLI
+namespace NetMip
 {
 	generic <typename  TFirst, typename TSecond>
 	public ref class Pair sealed

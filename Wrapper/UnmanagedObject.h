@@ -2,7 +2,7 @@
 
 #include "gcroot.h"
 
-namespace CLI
+namespace NetMip
 {
 	template<class T>
 	public class UnmanagedObject

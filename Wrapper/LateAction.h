@@ -2,7 +2,7 @@
 
 using namespace System::Threading;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class LateAction
 	{

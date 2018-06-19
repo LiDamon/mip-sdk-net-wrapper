@@ -9,7 +9,7 @@
 #include "PolicyDescriptor.h"
 #include "UserPolicy.h"
 
-namespace CLI
+namespace NetMip
 {
 	public ref class FileHandler : public ManagedObject<std::shared_ptr<mip::FileHandler>>
 	{

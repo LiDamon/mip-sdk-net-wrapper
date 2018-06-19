@@ -5,7 +5,7 @@
 #include "UnmanagedObject.h"
 #include "UserPolicy.h"
 
-namespace CLI
+namespace NetMip
 {
 	void FileHandler::GetLabelAsync(LateValue<ContentLabel^>^ lateValue)
 	{

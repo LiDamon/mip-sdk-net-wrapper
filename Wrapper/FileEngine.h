@@ -12,7 +12,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::IO;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class FileEngine : public ManagedObject<std::shared_ptr<mip::FileEngine>>
 	{
@@ -34,8 +34,8 @@ namespace CLI
 
 			property Identity^ Identity
 			{
-				CLI::Identity^ get();
-				void set(CLI::Identity^ value);
+				NetMip::Identity^ get();
+				void set(NetMip::Identity^ value);
 			}
 
 			property String^ ClientData
@@ -67,7 +67,7 @@ namespace CLI
 			: ManagedObject(true, ptr) {}
 
 	public:
-		array<CLI::Label^>^ ListSensitivityLabels();
+		array<NetMip::Label^>^ ListSensitivityLabels();
 
 		FileHandler^ CreateFileHandler(
 			String^ inputFilePath);

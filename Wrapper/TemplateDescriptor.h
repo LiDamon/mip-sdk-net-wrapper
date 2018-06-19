@@ -6,7 +6,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class TemplateDescriptor : public ManagedObject<std::shared_ptr<mip::TemplateDescriptor>>
 	{

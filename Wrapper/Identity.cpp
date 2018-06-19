@@ -3,7 +3,7 @@
 #include "Converters.h"
 #include "Identity.h"
 
-namespace CLI
+namespace NetMip
 {
 	Identity::Identity()
 		: ManagedObject(new mip::Identity())

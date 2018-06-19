@@ -4,7 +4,7 @@
 
 #include "Converters.h"
 
-namespace CLI
+namespace NetMip
 {
 	LabelingOptions::LabelingOptions(AssignmentMethod method, String^ justificationMessage)
 		: ManagedObject(new mip::LabelingOptions((mip::AssignmentMethod)method, net_string_to_std_string(justificationMessage)))
@@ -13,7 +13,7 @@ namespace CLI
 
 	AssignmentMethod LabelingOptions::Method::get()
 	{
-		return (CLI::AssignmentMethod)(m_Instance->GetAssignmentMethod());
+		return (NetMip::AssignmentMethod)(m_Instance->GetAssignmentMethod());
 	}
 
 	void LabelingOptions::Method::set(AssignmentMethod value)

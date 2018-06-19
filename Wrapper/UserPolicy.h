@@ -9,7 +9,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class UserPolicy : public ManagedObject<std::shared_ptr<mip::UserPolicy>>
 	{
@@ -21,9 +21,9 @@ namespace CLI
 	public:
 		bool AccessCheck(String^ right);
 
-		property CLI::UserPolicyType UserPolicyType
+		property NetMip::UserPolicyType UserPolicyType
 		{
-			CLI::UserPolicyType get();
+			NetMip::UserPolicyType get();
 		}
 
 		property String^ Name
@@ -38,12 +38,12 @@ namespace CLI
 
 		property TemplateDescriptor^ TemplateDescriptor
 		{
-			CLI::TemplateDescriptor^ get();
+			NetMip::TemplateDescriptor^ get();
 		}
 
 		property PolicyDescriptor^ PolicyDescriptor
 		{
-			CLI::PolicyDescriptor^ get();
+			NetMip::PolicyDescriptor^ get();
 		}
 
 		property String^ Owner

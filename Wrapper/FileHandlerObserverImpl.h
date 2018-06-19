@@ -7,7 +7,7 @@
 #include "mip/file/file_profile.h"
 #include "mip/rms/user_policy.h"
 
-namespace CLI
+namespace NetMip
 {
 	private class FileHandlerObserverImpl final : public mip::FileHandler::Observer
 	{

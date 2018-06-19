@@ -2,7 +2,7 @@
 
 #include "Converters.h"
 
-namespace CLI
+namespace NetMip
 {
 	String^ Label::Id::get()
 	{

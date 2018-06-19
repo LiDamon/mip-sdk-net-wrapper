@@ -1,8 +1,8 @@
-﻿using CLI;
+﻿using NetMip;
 
 namespace CsConsumer
 {
-    internal class AuthDelegateImpl : CLI.AuthDelegate
+    internal class AuthDelegateImpl : AuthDelegate
     {
         private readonly ITokenProvider tokenProvider;
 

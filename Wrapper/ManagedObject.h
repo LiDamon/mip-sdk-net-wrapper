@@ -1,6 +1,6 @@
 #pragma once
 
-namespace CLI
+namespace NetMip
 {
 	template<class T>
 	public ref class ManagedObject

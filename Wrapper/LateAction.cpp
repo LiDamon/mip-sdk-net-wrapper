@@ -4,7 +4,7 @@
 
 using namespace System::Threading;
 
-namespace CLI
+namespace NetMip
 {
 	LateAction::LateAction()
 		: m_EventHandle(gcnew ManualResetEvent(false))

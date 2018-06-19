@@ -8,7 +8,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref struct ApplicationInfo : public ManagedObject<mip::ApplicationInfo>
 	{

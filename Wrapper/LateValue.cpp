@@ -4,7 +4,7 @@
 
 using namespace System::Threading;
 
-namespace CLI
+namespace NetMip
 {
 	generic <class T>
 	LateValue<T>::LateValue()

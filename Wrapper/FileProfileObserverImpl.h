@@ -5,7 +5,7 @@
 
 #include "mip/file/file_profile.h"
 
-namespace CLI
+namespace NetMip
 {
 	private class FileProfileObserverImpl final : public mip::FileProfile::Observer
 	{

@@ -12,7 +12,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class ContentLabel : public ManagedObject<std::shared_ptr<mip::ContentLabel>>
 	{
@@ -23,9 +23,9 @@ namespace CLI
 
 	public:
 
-		property CLI::Label^ Label
+		property NetMip::Label^ Label
 		{
-			CLI::Label^ get();
+			NetMip::Label^ get();
 		}
 
 		property String^ CreationTime
@@ -35,7 +35,7 @@ namespace CLI
 
 		property AssignmentMethod AssignmentMethod
 		{
-			CLI::AssignmentMethod get();
+			NetMip::AssignmentMethod get();
 		}
 	};
 }

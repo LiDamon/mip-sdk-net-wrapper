@@ -2,7 +2,7 @@
 
 #include "mip/rms/user_policy.h"
 
-namespace CLI
+namespace NetMip
 {
 	public enum class UserPolicyType
 	{

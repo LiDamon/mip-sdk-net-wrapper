@@ -3,11 +3,11 @@
 #include "Converters.h"
 #include "Label.h"
 
-namespace CLI
+namespace NetMip
 {
-	CLI::Label^ ContentLabel::Label::get()
+	NetMip::Label^ ContentLabel::Label::get()
 	{
-		return gcnew CLI::Label(m_Instance->get()->GetLabel().get());
+		return gcnew NetMip::Label(m_Instance->get()->GetLabel().get());
 	}
 
 	String^ ContentLabel::CreationTime::get()
@@ -15,10 +15,10 @@ namespace CLI
 		return std_string_to_net_string(m_Instance->get()->GetCreationTime());
 	}
 
-	CLI::AssignmentMethod ContentLabel::AssignmentMethod::get()
+	NetMip::AssignmentMethod ContentLabel::AssignmentMethod::get()
 	{
 		auto mipAssignmentMethod = m_Instance->get()->GetAssignmentMethod();
-		auto assignmentMethod = (CLI::AssignmentMethod)mipAssignmentMethod;
+		auto assignmentMethod = (NetMip::AssignmentMethod)mipAssignmentMethod;
 		return assignmentMethod;
 	}
 }

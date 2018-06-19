@@ -4,7 +4,7 @@
 
 #include "Converters.h"
 
-namespace CLI
+namespace NetMip
 {
 	String^ PolicyDescriptor::Name::get()
 	{

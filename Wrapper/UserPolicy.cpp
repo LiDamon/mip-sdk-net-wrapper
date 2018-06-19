@@ -4,7 +4,7 @@
 
 #include "Converters.h"
 
-namespace CLI
+namespace NetMip
 {
 	bool UserPolicy::AccessCheck(String^ right)
 	{
@@ -13,7 +13,7 @@ namespace CLI
 
 	UserPolicyType UserPolicy::UserPolicyType::get()
 	{
-		return (CLI::UserPolicyType)(m_Instance->get()->GetType());
+		return (NetMip::UserPolicyType)(m_Instance->get()->GetType());
 	}
 
 	String^ UserPolicy::Name::get()
@@ -26,20 +26,20 @@ namespace CLI
 		return std_string_to_net_string(m_Instance->get()->GetDescription());
 	}
 
-	CLI::TemplateDescriptor^ UserPolicy::TemplateDescriptor::get()
+	NetMip::TemplateDescriptor^ UserPolicy::TemplateDescriptor::get()
 	{
 		std::shared_ptr<mip::TemplateDescriptor>* ptrTemplateDescriptor = new std::shared_ptr<mip::TemplateDescriptor>(
 			m_Instance->get()->GetTemplateDescriptor());
 
-		return gcnew CLI::TemplateDescriptor(ptrTemplateDescriptor);
+		return gcnew NetMip::TemplateDescriptor(ptrTemplateDescriptor);
 	}
 
-	CLI::PolicyDescriptor^ UserPolicy::PolicyDescriptor::get()
+	NetMip::PolicyDescriptor^ UserPolicy::PolicyDescriptor::get()
 	{
 		std::shared_ptr<mip::PolicyDescriptor>* ptrPolicyDescriptor = new std::shared_ptr<mip::PolicyDescriptor>(
 			m_Instance->get()->GetPolicyDescriptor());
 
-		return gcnew CLI::PolicyDescriptor(ptrPolicyDescriptor);
+		return gcnew NetMip::PolicyDescriptor(ptrPolicyDescriptor);
 	}
 
 	String^ UserPolicy::Owner::get()

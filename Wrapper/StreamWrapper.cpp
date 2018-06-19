@@ -2,7 +2,7 @@
 
 using namespace System::Runtime::InteropServices;
 
-namespace CLI
+namespace NetMip
 {
 
 	int64_t StreamWrapper::Read(uint8_t* buffer, int64_t bufferLength)
@@ -68,62 +68,4 @@ namespace CLI
 		// TODO:
 		throw 1;
 	}
-
-
-
-
-	/*
-	bool StreamWrapper::CanRead::get()
-	{
-		return m_Instance->get()->CanRead();
-	};
-
-	bool StreamWrapper::CanSeek::get()
-	{
-		return true;
-	}
-
-	bool StreamWrapper::CanWrite::get()
-	{
-		return m_Instance->get()->CanWrite();
-	}
-
-	long long StreamWrapper::Length::get()
-	{
-		return m_Instance->get()->Size();
-	}
-
-	long long StreamWrapper::Position::get()
-	{
-		return m_Instance->get()->Position();
-	}
-
-	void StreamWrapper::Position::set(long long value)
-	{
-		throw gcnew NotSupportedException();
-	}
-
-	void StreamWrapper::Flush()
-	{
-		m_Instance->get()->Flush();
-	}
-
-	int StreamWrapper::Read(array<Byte>^ buffer, int offset, int count)
-	{
-
-	}
-
-	long long StreamWrapper::Seek(long long offset, SeekOrigin origin)
-	{
-	}
-
-	void StreamWrapper::SetLength(long long value)
-	{
-		m_Instance->get()->Size(value);
-	}
-
-	void StreamWrapper::Write(array<Byte>^ buffer, int offset, int count)
-	{
-	}
-	*/
 }

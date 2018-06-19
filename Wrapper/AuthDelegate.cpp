@@ -3,10 +3,10 @@
 #include "AuthDelegate.h"
 #include "Converters.h"
 
-namespace CLI
+namespace NetMip
 {
 	/**************************************
-	 * CLI::AuthDelegate::OAuth2Challenge
+	 * NetMip::AuthDelegate::OAuth2Challenge
 	 **************************************/
 
 	//AuthDelegate::OAuth2Challenge::OAuth2Challenge(String^ authority, String^ resource)
@@ -31,7 +31,7 @@ namespace CLI
 
 
 	/**************************************
-	 * CLI::AuthDelegate::OAuth2Token
+	 * NetMip::AuthDelegate::OAuth2Token
 	 **************************************/
 
 	//AuthDelegate::OAuth2Token::OAuth2Token()
@@ -61,7 +61,7 @@ namespace CLI
 
 
 	/**************************************
-	 * CLI::AuthDelegate
+	 * NetMip::AuthDelegate
 	 **************************************/
 
 	AuthDelegate::AuthDelegate()
@@ -91,7 +91,7 @@ namespace CLI
 
 
 	/**************************************
-	 * CLI::AuthDelegateBridge
+	 * NetMip::AuthDelegateBridge
 	 **************************************/
 
 	bool AuthDelegateBridgeImpl::AcquireOAuth2Token(
@@ -100,9 +100,9 @@ namespace CLI
 		mip::AuthDelegate::OAuth2Token& token)
 	{
 		bool result = m_cli->AcquireOAuth2Token(
-			gcnew CLI::Identity((mip::Identity*)(&identity)),
-			gcnew CLI::AuthDelegate::OAuth2Challenge((mip::AuthDelegate::OAuth2Challenge*)(&challenge)),
-			gcnew CLI::AuthDelegate::OAuth2Token(&token));
+			gcnew NetMip::Identity((mip::Identity*)(&identity)),
+			gcnew NetMip::AuthDelegate::OAuth2Challenge((mip::AuthDelegate::OAuth2Challenge*)(&challenge)),
+			gcnew NetMip::AuthDelegate::OAuth2Token(&token));
 
 		return result;
 	}

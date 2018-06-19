@@ -2,7 +2,7 @@
 
 #include "mip/common_types.h"
 
-namespace CLI
+namespace NetMip
 {
 	public enum class AssignmentMethod : unsigned short
 	{

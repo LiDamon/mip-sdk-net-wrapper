@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using CLI;
+using NetMip;
 
 namespace CsConsumer
 {

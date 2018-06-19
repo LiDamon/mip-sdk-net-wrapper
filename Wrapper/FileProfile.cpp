@@ -6,13 +6,13 @@
 #include "LateValue.h"
 #include "UnmanagedObject.h"
 
-namespace CLI
+namespace NetMip
 {
 	FileProfile::Settings::Settings(
 		String^ path,
 		bool useInMemoryStorage,
-		CLI::AuthDelegate^ authDelegate,
-		CLI::ApplicationInfo^ applicationInfo)
+		NetMip::AuthDelegate^ authDelegate,
+		NetMip::ApplicationInfo^ applicationInfo)
 		: ManagedObject(new mip::FileProfile::Settings(
 			net_string_to_std_string(path),
 			useInMemoryStorage,
@@ -39,12 +39,12 @@ namespace CLI
 		return m_Instance->GetUseInMemoryStorage();
 	}
 
-	CLI::AuthDelegate^ FileProfile::Settings::AuthDelegate::get()
+	NetMip::AuthDelegate^ FileProfile::Settings::AuthDelegate::get()
 	{
 		return m_AuthDelegate;
 	}
 
-	CLI::ApplicationInfo^ FileProfile::Settings::ApplicationInfo::get()
+	NetMip::ApplicationInfo^ FileProfile::Settings::ApplicationInfo::get()
 	{
 		return m_ApplicationInfo;
 	}
@@ -71,7 +71,7 @@ namespace CLI
 
 
 
-	void FileProfile::LoadAsync(Settings^ settings, CLI::LateValue<FileProfile^>^ lateValue)
+	void FileProfile::LoadAsync(Settings^ settings, NetMip::LateValue<FileProfile^>^ lateValue)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<FileProfile^>>>(lateValue);
 		mip::FileProfile::LoadAsync(*(settings->GetInstance()), ptr);
@@ -105,7 +105,7 @@ namespace CLI
 
 	void FileProfile::AddEngineAsync(
 		FileEngine::Settings^ settings,
-		CLI::LateValue<FileEngine^>^ lateValue)
+		NetMip::LateValue<FileEngine^>^ lateValue)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<FileEngine^>>>(lateValue);
 		this->GetInstance()->get()->AddEngineAsync(*(settings->GetInstance()), ptr);

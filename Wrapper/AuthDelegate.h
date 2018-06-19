@@ -9,7 +9,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	// Forward declare
 	class AuthDelegateBridgeImpl;
@@ -72,7 +72,7 @@ namespace CLI
 	private class AuthDelegateBridgeImpl final : mip::AuthDelegate
 	{
 	public:
-		AuthDelegateBridgeImpl(gcroot<CLI::AuthDelegate^> ad) : m_cli(ad) { }
+		AuthDelegateBridgeImpl(gcroot<NetMip::AuthDelegate^> ad) : m_cli(ad) { }
 
 		~AuthDelegateBridgeImpl();
 
@@ -82,6 +82,6 @@ namespace CLI
 			mip::AuthDelegate::OAuth2Token& token) override;
 
 	private:
-		gcroot<CLI::AuthDelegate^> m_cli;
+		gcroot<NetMip::AuthDelegate^> m_cli;
 	};
 }

@@ -6,7 +6,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class PolicyDescriptor : public ManagedObject<std::shared_ptr<mip::PolicyDescriptor>>
 	{
@@ -27,6 +27,8 @@ namespace CLI
 			String^ get();
 			void set(String^ value);
 		}
+
+		//TODO: Complete the PolicyDescriptor API
 
 		///**
 		//* @brief Gets collection of users-to-rights mappings

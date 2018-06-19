@@ -7,7 +7,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class LabelingOptions : public ManagedObject<mip::LabelingOptions>
 	{

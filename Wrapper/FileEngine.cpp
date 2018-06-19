@@ -6,7 +6,7 @@
 #include "FileHandlerObserverImpl.h"
 #include "StreamWrapper.h"
 
-namespace CLI
+namespace NetMip
 {
 	FileEngine::Settings::Settings(String^ id, String^ clientData, String^ locale)
 		: ManagedObject(new mip::FileEngine::Settings(net_string_to_std_string(id), net_string_to_std_string(clientData), net_string_to_std_string(locale)))
@@ -23,10 +23,10 @@ namespace CLI
 		mip::Identity identity = m_Instance->GetIdentity();
 		mip::Identity* ptr = &(identity);
 
-		return gcnew CLI::Identity(ptr);
+		return gcnew NetMip::Identity(ptr);
 	}
 
-	void FileEngine::Settings::Identity::set(CLI::Identity^ value)
+	void FileEngine::Settings::Identity::set(NetMip::Identity^ value)
 	{
 		m_Instance->SetIdentity(*(value->GetInstance()));
 	}
@@ -88,7 +88,7 @@ namespace CLI
 	}
 
 
-	array<CLI::Label^>^ FileEngine::ListSensitivityLabels()
+	array<NetMip::Label^>^ FileEngine::ListSensitivityLabels()
 	{
 		auto mipLabels = m_Instance->get()->ListSensitivityLabels();
 

@@ -2,7 +2,7 @@
 
 using namespace System::Threading;
 
-namespace CLI
+namespace NetMip
 {
 	generic <class T>
 	public ref class LateValue

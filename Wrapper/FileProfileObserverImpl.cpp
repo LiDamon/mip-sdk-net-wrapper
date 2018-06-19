@@ -8,12 +8,12 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	void FileProfileObserverImpl::OnLoadSuccess(const std::shared_ptr<mip::FileProfile>& profile, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileProfile^>>*>(context.get());
-		CLI::LateValue<CLI::FileProfile^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<NetMip::FileProfile^>>*>(context.get());
+		NetMip::LateValue<NetMip::FileProfile^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		std::shared_ptr<mip::FileProfile>* ptrProfile = new std::shared_ptr<mip::FileProfile>(profile);
 
@@ -22,16 +22,16 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnLoadFailure(const std::exception_ptr & error, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileProfile^>>*>(context.get());
-		CLI::LateValue<CLI::FileProfile^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<NetMip::FileProfile^>>*>(context.get());
+		NetMip::LateValue<NetMip::FileProfile^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
 
 	void FileProfileObserverImpl::OnListEnginesSuccess(const std::vector<std::string>& engineIds, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<array<String^>^>>*>(context.get());
-		CLI::LateValue<array<String^>^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<array<String^>^>>*>(context.get());
+		NetMip::LateValue<array<String^>^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		auto arr = gcnew array<String^>((int)engineIds.size());
 
@@ -47,8 +47,8 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnListEnginesError(const std::exception_ptr& error, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<String^>>*>(context.get());
-		CLI::LateValue<String^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<String^>>*>(context.get());
+		NetMip::LateValue<String^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
@@ -56,16 +56,16 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnUnloadEngineSuccess(const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateAction = static_cast<CLI::UnmanagedObject<CLI::LateAction>*>(context.get());
-		CLI::LateAction^ lateAction = unmanagedLateAction->GetInstance();
+		auto unmanagedLateAction = static_cast<NetMip::UnmanagedObject<NetMip::LateAction>*>(context.get());
+		NetMip::LateAction^ lateAction = unmanagedLateAction->GetInstance();
 
 		lateAction->Complete();
 	}
 
 	void FileProfileObserverImpl::OnUnloadEngineError(const std::exception_ptr& error, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateAction = static_cast<CLI::UnmanagedObject<CLI::LateAction>*>(context.get());
-		CLI::LateAction^ lateAction = unmanagedLateAction->GetInstance();
+		auto unmanagedLateAction = static_cast<NetMip::UnmanagedObject<NetMip::LateAction>*>(context.get());
+		NetMip::LateAction^ lateAction = unmanagedLateAction->GetInstance();
 
 		lateAction->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
@@ -73,8 +73,8 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnAddEngineSuccess(const std::shared_ptr<mip::FileEngine>& engine, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileEngine^>>*>(context.get());
-		CLI::LateValue<CLI::FileEngine^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<NetMip::FileEngine^>>*>(context.get());
+		NetMip::LateValue<NetMip::FileEngine^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		std::shared_ptr<mip::FileEngine>* ptrEngine = new std::shared_ptr<mip::FileEngine>(engine);
 
@@ -83,8 +83,8 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnAddEngineError(const std::exception_ptr& error, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateValue = static_cast<CLI::UnmanagedObject<CLI::LateValue<CLI::FileEngine^>>*>(context.get());
-		CLI::LateValue<CLI::FileEngine^>^ lateValue = unmanagedLateValue->GetInstance();
+		auto unmanagedLateValue = static_cast<NetMip::UnmanagedObject<NetMip::LateValue<NetMip::FileEngine^>>*>(context.get());
+		NetMip::LateValue<NetMip::FileEngine^>^ lateValue = unmanagedLateValue->GetInstance();
 
 		lateValue->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}
@@ -92,16 +92,16 @@ namespace CLI
 
 	void FileProfileObserverImpl::OnDeleteEngineSuccess(const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateAction = static_cast<CLI::UnmanagedObject<CLI::LateAction>*>(context.get());
-		CLI::LateAction^ lateAction = unmanagedLateAction->GetInstance();
+		auto unmanagedLateAction = static_cast<NetMip::UnmanagedObject<NetMip::LateAction>*>(context.get());
+		NetMip::LateAction^ lateAction = unmanagedLateAction->GetInstance();
 
 		lateAction->Complete();
 	}
 
 	void FileProfileObserverImpl::OnDeleteEngineError(const std::exception_ptr& error, const std::shared_ptr<void>& context)
 	{
-		auto unmanagedLateAction = static_cast<CLI::UnmanagedObject<CLI::LateAction>*>(context.get());
-		CLI::LateAction^ lateAction = unmanagedLateAction->GetInstance();
+		auto unmanagedLateAction = static_cast<NetMip::UnmanagedObject<NetMip::LateAction>*>(context.get());
+		NetMip::LateAction^ lateAction = unmanagedLateAction->GetInstance();
 
 		lateAction->SetError(gcnew System::Exception(ExceptionHelper::GetExceptionMessage(error)));
 	}

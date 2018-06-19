@@ -10,7 +10,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class Label : public ManagedObject<mip::Label>
 	{

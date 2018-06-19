@@ -6,7 +6,7 @@
 
 using namespace System;
 
-namespace CLI
+namespace NetMip
 {
 	public ref class Identity : public ManagedObject<mip::Identity>
 	{
