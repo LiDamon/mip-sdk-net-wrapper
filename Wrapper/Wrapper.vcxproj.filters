@@ -72,6 +72,12 @@
     <ClCompile Include="LateAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserRoles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserRights.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileEngine.h">
@@ -147,6 +153,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LateAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserRoles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserRights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

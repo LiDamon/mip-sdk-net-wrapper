@@ -162,6 +162,8 @@
     <ClInclude Include="UnmanagedObject.h" />
     <ClInclude Include="UserPolicy.h" />
     <ClInclude Include="UserPolicyType.h" />
+    <ClInclude Include="UserRights.h" />
+    <ClInclude Include="UserRoles.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationInfo.cpp" />
@@ -188,6 +190,8 @@
     <ClCompile Include="StreamWrapper.cpp" />
     <ClCompile Include="TemplateDescriptor.cpp" />
     <ClCompile Include="UserPolicy.cpp" />
+    <ClCompile Include="UserRights.cpp" />
+    <ClCompile Include="UserRoles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="mip_file_sdk.lib" />

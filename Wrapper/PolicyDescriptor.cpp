@@ -27,6 +27,49 @@ namespace NetMip
 		return m_Instance->get()->SetDescription(net_string_to_std_string(value));
 	}
 
+	array<UserRights^>^ PolicyDescriptor::GetUserRightsList()
+	{
+		auto mipUserRightsList = m_Instance->get()->GetUserRightsList();
+
+		auto arr = gcnew array<UserRights^>((int)mipUserRightsList.size());
+
+		int i = 0;
+		for (auto const& mipUserRights : mipUserRightsList)
+		{
+			mip::UserRights* ptr = (mip::UserRights*)(&(mipUserRights));
+			arr[i++] = gcnew UserRights(ptr);
+		}
+
+		return arr;
+	}
+
+	array<UserRoles^>^ PolicyDescriptor::GetUserRolesList()
+	{
+		auto mipUserRolesList = m_Instance->get()->GetUserRolesList();
+
+		auto arr = gcnew array<UserRoles^>((int)mipUserRolesList.size());
+
+		int i = 0;
+		for (auto const& mipUserRoles : mipUserRolesList)
+		{
+			mip::UserRoles* ptr = (mip::UserRoles*)(&(mipUserRoles));
+			arr[i++] = gcnew UserRoles(ptr);
+		}
+
+		return arr;
+	}
+
+
+	//TODO: Convertion required between DateTime and std::chrono::time_point<std::chrono::system_clock>
+
+	//DateTime PolicyDescriptor::ContentValidUntil::get()
+	//{
+	//}
+
+	//void PolicyDescriptor::ContentValidUntil::set(DateTime value)
+	//{
+	//}
+
 
 	bool PolicyDescriptor::AllowOfflineAccess::get()
 	{

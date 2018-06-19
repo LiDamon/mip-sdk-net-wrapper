@@ -3,6 +3,8 @@
 #include "mip/rms/policy_descriptor.h"
 
 #include "ManagedObject.h"
+#include "UserRights.h"
+#include "UserRoles.h"
 
 using namespace System;
 
@@ -28,38 +30,17 @@ namespace NetMip
 			void set(String^ value);
 		}
 
-		//TODO: Complete the PolicyDescriptor API
+		array<UserRights^>^ GetUserRightsList();
 
-		///**
-		//* @brief Gets collection of users-to-rights mappings
+		array<UserRoles^>^ GetUserRolesList();
 
-		//* @return Collection of users-to-rights mappings
-		//*
-		//* @note The value of the UserRightsList property will be empty if the current user doesn't have access to the user
-		//* rights information (i.e. is not the owner and does not have the VIEWRIGHTSDATA right).
-		//*/
-		//virtual const std::vector<UserRights>& GetUserRightsList() const = 0;
+		//TODO: Convertion required between DateTime and std::chrono::time_point<std::chrono::system_clock>
 
-		///**
-		//* @brief Gets collection of users-to-roles mappings
-		//*
-		//* @return Collection of users-to-roles mappings
-		//*/
-		//virtual const std::vector<mip::UserRoles>& GetUserRolesList() = 0;
-
-		///**
-		//* @brief Gets policy expiration time
-		//*
-		//* @return Policy expiration time
-		//*/
-		//virtual const std::chrono::time_point<std::chrono::system_clock>& GetContentValidUntil() = 0;
-
-		///**
-		//* @brief Sets policy expiration time
-		//*
-		//* @param value Policy expiration time
-		//*/
-		//virtual void SetContentValidUntil(const std::chrono::time_point<std::chrono::system_clock>& value) = 0;
+		//property DateTime ContentValidUntil
+		//{
+		//	DateTime get();
+		//	void set(DateTime value);
+		//}
 
 		property bool AllowOfflineAccess
 		{
@@ -72,6 +53,8 @@ namespace NetMip
 			String^ get();
 			void set(String^ value);
 		}
+
+		//TODO: Complete the PolicyDescriptor API
 
 		///**
 		//* @brief Gets app-specific data that was encrypted
