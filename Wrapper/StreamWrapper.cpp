@@ -65,7 +65,7 @@ namespace NetMip
 
 	std::shared_ptr<mip::Stream> StreamWrapper::Clone()
 	{
-		// TODO:
+		// TODO: Implement the Clone method
 		throw 1;
 	}
 }

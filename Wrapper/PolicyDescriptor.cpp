@@ -91,4 +91,68 @@ namespace NetMip
 	{
 		return m_Instance->get()->SetReferrer(net_string_to_std_string(value));
 	}
+
+	Dictionary<String^, String^>^ PolicyDescriptor::EncryptedAppData::get()
+	{
+		auto mipEncryptedAppData = m_Instance->get()->GetEncryptedAppData();
+
+		auto dictionary = gcnew Dictionary<String^, String^>((int)mipEncryptedAppData.size());
+
+		for (auto const& mipEntry : mipEncryptedAppData)
+		{
+			dictionary->Add(
+				std_string_to_net_string(mipEntry.first),
+				std_string_to_net_string(mipEntry.second));
+		}
+
+		return dictionary;
+	}
+
+	void PolicyDescriptor::EncryptedAppData::set(Dictionary<String^, String^>^ value)
+	{
+		std::unordered_map<std::string, std::string> map(value->Count);
+
+		for each (auto pair in value)
+		{
+			std::pair<std::string, std::string> stdPair(
+				net_string_to_std_string(pair.Key),
+				net_string_to_std_string(pair.Value));
+
+			map.insert(stdPair);
+		}
+
+		m_Instance->get()->SetEncryptedAppData(map);
+	}
+
+	Dictionary<String^, String^>^ PolicyDescriptor::SignedAppData::get()
+	{
+		auto mipSignedAppData = m_Instance->get()->GetSignedAppData();
+
+		auto dictionary = gcnew Dictionary<String^, String^>((int)mipSignedAppData.size());
+
+		for (auto const& mipEntry : mipSignedAppData)
+		{
+			dictionary->Add(
+				std_string_to_net_string(mipEntry.first),
+				std_string_to_net_string(mipEntry.second));
+		}
+
+		return dictionary;
+	}
+
+	void PolicyDescriptor::SignedAppData::set(Dictionary<String^, String^>^ value)
+	{
+		std::unordered_map<std::string, std::string> map(value->Count);
+
+		for each (auto pair in value)
+		{
+			std::pair<std::string, std::string> stdPair(
+				net_string_to_std_string(pair.Key),
+				net_string_to_std_string(pair.Value));
+
+			map.insert(stdPair);
+		}
+
+		m_Instance->get()->SetSignedAppData(map);
+	}
 }
