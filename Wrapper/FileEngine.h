@@ -26,6 +26,9 @@ namespace NetMip
 
 			Settings(String^ id, String^ clientData, String^ locale);
 
+		internal:
+			Settings(mip::FileEngine::Settings* settings);
+
 		public:
 			property String^ Id
 			{
@@ -67,6 +70,8 @@ namespace NetMip
 			: ManagedObject(true, ptr) {}
 
 	public:
+		FileEngine::Settings^ GetSettings();
+
 		array<NetMip::Label^>^ ListSensitivityLabels();
 
 		FileHandler^ CreateFileHandler(

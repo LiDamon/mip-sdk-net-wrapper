@@ -9,9 +9,15 @@
 namespace NetMip
 {
 	FileEngine::Settings::Settings(String^ id, String^ clientData, String^ locale)
-		: ManagedObject(new mip::FileEngine::Settings(net_string_to_std_string(id), net_string_to_std_string(clientData), net_string_to_std_string(locale)))
+		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(net_string_to_std_string(id), net_string_to_std_string(clientData), net_string_to_std_string(locale)))
 	{
 	}
+
+	FileEngine::Settings::Settings(mip::FileEngine::Settings* settings)
+		: ManagedObject(settings)
+	{
+	}
+
 
 	String^ FileEngine::Settings::Id::get()
 	{
@@ -87,6 +93,12 @@ namespace NetMip
 		m_Instance->SetCustomSettings(vector);
 	}
 
+
+	FileEngine::Settings^ FileEngine::GetSettings()
+	{
+		auto mipSettings = m_Instance->get()->GetSettings();
+		return gcnew FileEngine::Settings(&(mipSettings));
+	}
 
 	array<NetMip::Label^>^ FileEngine::ListSensitivityLabels()
 	{
