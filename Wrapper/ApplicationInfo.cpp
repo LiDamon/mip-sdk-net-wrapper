@@ -10,19 +10,19 @@ using namespace System;
 namespace NetMip
 {
 	ApplicationInfo::ApplicationInfo(String^ applicationId, String^ friendlyName)
-		: ManagedObject(new mip::ApplicationInfo())
+		: ManagedObject(true, new mip::ApplicationInfo())
 	{
-		m_Instance->applicationId = net_string_to_std_string(applicationId);
-		m_Instance->friendlyName = net_string_to_std_string(friendlyName);
+		this->Instance->applicationId = net_string_to_std_string(applicationId);
+		this->Instance->friendlyName = net_string_to_std_string(friendlyName);
 	}
 
 	String^ ApplicationInfo::ApplicationId::get()
 	{
-		return std_string_to_net_string(m_Instance->applicationId);
+		return std_string_to_net_string(this->Instance->applicationId);
 	}
 
 	String^ ApplicationInfo::FriendlyName::get()
 	{
-		return std_string_to_net_string(m_Instance->friendlyName);
+		return std_string_to_net_string(this->Instance->friendlyName);
 	}
 }

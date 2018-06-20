@@ -13,30 +13,30 @@ namespace NetMip
 		bool useInMemoryStorage,
 		NetMip::AuthDelegate^ authDelegate,
 		NetMip::ApplicationInfo^ applicationInfo)
-		: ManagedObject(new mip::FileProfile::Settings(
+		: ManagedObject(true, new mip::FileProfile::Settings(
 			net_string_to_std_string(path),
 			useInMemoryStorage,
 			*(authDelegate->GetBridge()),
-			std::shared_ptr<mip::FileProfile::Observer>((mip::FileProfile::Observer*)(new FileProfileObserverImpl())),
-			*(applicationInfo->GetInstance()))),
+			std::shared_ptr<mip::FileProfile::Observer>(new FileProfileObserverImpl()),
+			*(applicationInfo->Instance))),
 		m_AuthDelegate(authDelegate),
 		m_ApplicationInfo(applicationInfo)
 	{
 	}
 
-	FileProfile::Settings::Settings(mip::FileProfile::Settings* ptr)
-		: ManagedObject(ptr)
+	FileProfile::Settings::Settings(bool owner, mip::FileProfile::Settings* ptr)
+		: ManagedObject(owner, ptr)
 	{
 	}
 
 	String^ FileProfile::Settings::Path::get()
 	{
-		return std_string_to_net_string(m_Instance->GetPath());
+		return std_string_to_net_string(this->Instance->GetPath());
 	}
 
 	bool FileProfile::Settings::UseInMemoryStorage::get()
 	{
-		return m_Instance->GetUseInMemoryStorage();
+		return this->Instance->GetUseInMemoryStorage();
 	}
 
 	NetMip::AuthDelegate^ FileProfile::Settings::AuthDelegate::get()
@@ -51,22 +51,22 @@ namespace NetMip
 
 	bool FileProfile::Settings::SkipTelemetryInit::get()
 	{
-		return m_Instance->GetSkipTelemetryInit();
+		return this->Instance->GetSkipTelemetryInit();
 	}
 
 	void FileProfile::Settings::SetSkipTelemetryInit()
 	{
-		m_Instance->SetSkipTelemetryInit();
+		this->Instance->SetSkipTelemetryInit();
 	}
 
 	String^ FileProfile::Settings::SessionId::get()
 	{
-		return std_string_to_net_string(m_Instance->GetSessionId());
+		return std_string_to_net_string(this->Instance->GetSessionId());
 	}
 
 	void FileProfile::Settings::SessionId::set(String^ value)
 	{
-		m_Instance->SetSessionId(net_string_to_std_string(value));
+		this->Instance->SetSessionId(net_string_to_std_string(value));
 	}
 
 
@@ -74,7 +74,7 @@ namespace NetMip
 	void FileProfile::LoadAsync(Settings^ settings, NetMip::LateValue<FileProfile^>^ lateValue)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<FileProfile^>>>(lateValue);
-		mip::FileProfile::LoadAsync(*(settings->GetInstance()), ptr);
+		mip::FileProfile::LoadAsync(*(settings->Instance), ptr);
 	}
 
 	String^ FileProfile::GetSdkVersion()
@@ -85,20 +85,20 @@ namespace NetMip
 
 	FileProfile::Settings^ FileProfile::GetSettings()
 	{
-		auto settings = m_Instance->get()->GetSettings();
-		return gcnew FileProfile::Settings(&(settings));
+		auto settings = this->Instance->get()->GetSettings();
+		return gcnew FileProfile::Settings(true, new mip::FileProfile::Settings(settings));
 	}
 
 	void FileProfile::ListEnginesAsync(LateValue<array<String^>^>^ lateEngineIds)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<array<String^>^>>>(lateEngineIds);
-		this->GetInstance()->get()->ListEnginesAsync(ptr);
+		this->Instance->get()->ListEnginesAsync(ptr);
 	}
 
 	void FileProfile::UnloadEngineAsync(String^ engineId, LateAction^ action)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateAction>>(action);
-		this->GetInstance()->get()->UnloadEngineAsync(
+		this->Instance->get()->UnloadEngineAsync(
 			net_string_to_std_string(engineId),
 			ptr);
 	}
@@ -108,13 +108,13 @@ namespace NetMip
 		NetMip::LateValue<FileEngine^>^ lateValue)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateValue<FileEngine^>>>(lateValue);
-		this->GetInstance()->get()->AddEngineAsync(*(settings->GetInstance()), ptr);
+		this->Instance->get()->AddEngineAsync(*(settings->Instance), ptr);
 	}
 
 	void FileProfile::DeleteEngineAsync(String^ engineId, LateAction^ action)
 	{
 		auto ptr = std::make_shared<UnmanagedObject<LateAction>>(action);
-		this->GetInstance()->get()->DeleteEngineAsync(
+		this->Instance->get()->DeleteEngineAsync(
 			net_string_to_std_string(engineId),
 			ptr);
 	}

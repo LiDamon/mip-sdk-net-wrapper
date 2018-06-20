@@ -8,16 +8,16 @@ namespace NetMip
 {
 	String^ TemplateDescriptor::TemplateId::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->TemplateId());
+		return std_string_to_net_string(this->Instance->get()->TemplateId());
 	}
 
 	String^ TemplateDescriptor::Name::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->Name());
+		return std_string_to_net_string(this->Instance->get()->Name());
 	}
 
 	String^ TemplateDescriptor::Description::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->Description());
+		return std_string_to_net_string(this->Instance->get()->Description());
 	}
 }

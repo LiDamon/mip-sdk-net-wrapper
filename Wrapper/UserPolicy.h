@@ -14,8 +14,8 @@ namespace NetMip
 	public ref class UserPolicy : public ManagedObject<std::shared_ptr<mip::UserPolicy>>
 	{
 	internal:
-		UserPolicy(std::shared_ptr<mip::UserPolicy>* contentLabel)
-			: ManagedObject(contentLabel)
+		UserPolicy(bool owner, std::shared_ptr<mip::UserPolicy>* contentLabel)
+			: ManagedObject(owner, contentLabel)
 		{}
 
 	public:

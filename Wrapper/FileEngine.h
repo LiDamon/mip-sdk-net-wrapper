@@ -71,7 +71,7 @@ namespace NetMip
 			Settings(Identity^ identity, String^ clientData, String^ locale);
 
 		internal:
-			Settings(mip::FileEngine::Settings* settings);
+			Settings(bool owner, mip::FileEngine::Settings* settings);
 
 		public:
 

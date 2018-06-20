@@ -6,7 +6,7 @@ namespace NetMip
 {
 	array<String^>^ UserRoles::Users::get()
 	{
-		mip::UserList mipUsers = m_Instance->Users();
+		mip::UserList mipUsers = this->Instance->Users();
 
 		auto arr = gcnew array<String^>((int)mipUsers.size());
 
@@ -21,7 +21,7 @@ namespace NetMip
 
 	array<String^>^ UserRoles::Roles::get()
 	{
-		mip::RoleList mipRoles = m_Instance->Roles();
+		mip::RoleList mipRoles = this->Instance->Roles();
 
 		auto arr = gcnew array<String^>((int)mipRoles.size());
 

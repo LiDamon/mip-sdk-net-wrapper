@@ -14,8 +14,8 @@ namespace NetMip
 	public ref class PolicyDescriptor : public ManagedObject<std::shared_ptr<mip::PolicyDescriptor>>
 	{
 	internal:
-		PolicyDescriptor(std::shared_ptr<mip::PolicyDescriptor>* contentLabel)
-			: ManagedObject(contentLabel)
+		PolicyDescriptor(bool owner, std::shared_ptr<mip::PolicyDescriptor>* policyDescriptor)
+			: ManagedObject(owner, policyDescriptor)
 		{}
 
 	public:

@@ -40,7 +40,7 @@ namespace NetMip
 				NetMip::ApplicationInfo^ applicationInfo);
 
 		internal:
-			Settings(mip::FileProfile::Settings* settings);
+			Settings(bool owner, mip::FileProfile::Settings* settings);
 
 		public:
 			property String^ Path

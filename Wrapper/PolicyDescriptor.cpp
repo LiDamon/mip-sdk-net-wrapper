@@ -8,36 +8,36 @@ namespace NetMip
 {
 	String^ PolicyDescriptor::Name::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetName());
+		return std_string_to_net_string(this->Instance->get()->GetName());
 	}
 
 	void PolicyDescriptor::Name::set(String^ value)
 	{
-		return m_Instance->get()->SetName(net_string_to_std_string(value));
+		return this->Instance->get()->SetName(net_string_to_std_string(value));
 	}
 
 
 	String^ PolicyDescriptor::Description::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetDescription());
+		return std_string_to_net_string(this->Instance->get()->GetDescription());
 	}
 
 	void PolicyDescriptor::Description::set(String^ value)
 	{
-		return m_Instance->get()->SetDescription(net_string_to_std_string(value));
+		return this->Instance->get()->SetDescription(net_string_to_std_string(value));
 	}
 
 	array<UserRights^>^ PolicyDescriptor::GetUserRightsList()
 	{
-		auto mipUserRightsList = m_Instance->get()->GetUserRightsList();
+		auto mipUserRightsList = this->Instance->get()->GetUserRightsList();
 
 		auto arr = gcnew array<UserRights^>((int)mipUserRightsList.size());
 
 		int i = 0;
 		for (auto const& mipUserRights : mipUserRightsList)
 		{
-			mip::UserRights* ptr = (mip::UserRights*)(&(mipUserRights));
-			arr[i++] = gcnew UserRights(ptr);
+			mip::UserRights* ptr = new mip::UserRights(mipUserRights);
+			arr[i++] = gcnew UserRights(true, ptr);
 		}
 
 		return arr;
@@ -45,15 +45,15 @@ namespace NetMip
 
 	array<UserRoles^>^ PolicyDescriptor::GetUserRolesList()
 	{
-		auto mipUserRolesList = m_Instance->get()->GetUserRolesList();
+		auto mipUserRolesList = this->Instance->get()->GetUserRolesList();
 
 		auto arr = gcnew array<UserRoles^>((int)mipUserRolesList.size());
 
 		int i = 0;
 		for (auto const& mipUserRoles : mipUserRolesList)
 		{
-			mip::UserRoles* ptr = (mip::UserRoles*)(&(mipUserRoles));
-			arr[i++] = gcnew UserRoles(ptr);
+			mip::UserRoles* ptr = new mip::UserRoles(mipUserRoles);
+			arr[i++] = gcnew UserRoles(true, ptr);
 		}
 
 		return arr;
@@ -73,28 +73,28 @@ namespace NetMip
 
 	bool PolicyDescriptor::AllowOfflineAccess::get()
 	{
-		return m_Instance->get()->DoesAllowOfflineAccess();
+		return this->Instance->get()->DoesAllowOfflineAccess();
 	}
 
 	void PolicyDescriptor::AllowOfflineAccess::set(bool value)
 	{
-		return m_Instance->get()->SetAllowOfflineAccess(value);
+		return this->Instance->get()->SetAllowOfflineAccess(value);
 	}
 
 
 	String^ PolicyDescriptor::Referrer::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetReferrer());
+		return std_string_to_net_string(this->Instance->get()->GetReferrer());
 	}
 
 	void PolicyDescriptor::Referrer::set(String^ value)
 	{
-		return m_Instance->get()->SetReferrer(net_string_to_std_string(value));
+		return this->Instance->get()->SetReferrer(net_string_to_std_string(value));
 	}
 
 	Dictionary<String^, String^>^ PolicyDescriptor::EncryptedAppData::get()
 	{
-		auto mipEncryptedAppData = m_Instance->get()->GetEncryptedAppData();
+		auto mipEncryptedAppData = this->Instance->get()->GetEncryptedAppData();
 
 		auto dictionary = gcnew Dictionary<String^, String^>((int)mipEncryptedAppData.size());
 
@@ -121,12 +121,12 @@ namespace NetMip
 			map.insert(stdPair);
 		}
 
-		m_Instance->get()->SetEncryptedAppData(map);
+		this->Instance->get()->SetEncryptedAppData(map);
 	}
 
 	Dictionary<String^, String^>^ PolicyDescriptor::SignedAppData::get()
 	{
-		auto mipSignedAppData = m_Instance->get()->GetSignedAppData();
+		auto mipSignedAppData = this->Instance->get()->GetSignedAppData();
 
 		auto dictionary = gcnew Dictionary<String^, String^>((int)mipSignedAppData.size());
 
@@ -153,6 +153,6 @@ namespace NetMip
 			map.insert(stdPair);
 		}
 
-		m_Instance->get()->SetSignedAppData(map);
+		this->Instance->get()->SetSignedAppData(map);
 	}
 }

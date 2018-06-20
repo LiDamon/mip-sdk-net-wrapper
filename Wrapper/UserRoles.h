@@ -11,8 +11,8 @@ namespace NetMip
 	public ref class UserRoles : public ManagedObject<mip::UserRoles>
 	{
 	internal:
-		UserRoles(mip::UserRoles* userRoles)
-			: ManagedObject(userRoles)
+		UserRoles(bool owner, mip::UserRoles* userRoles)
+			: ManagedObject(owner, userRoles)
 		{}
 
 	public:

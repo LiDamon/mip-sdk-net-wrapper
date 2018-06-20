@@ -21,7 +21,7 @@ namespace NetMip
 		ref class OAuth2Challenge : public ManagedObject<mip::AuthDelegate::OAuth2Challenge>
 		{
 		internal:
-			OAuth2Challenge(mip::AuthDelegate::OAuth2Challenge* challenge);
+			OAuth2Challenge(bool owner, mip::AuthDelegate::OAuth2Challenge* challenge);
 
 		public:
 			property String^ Authority

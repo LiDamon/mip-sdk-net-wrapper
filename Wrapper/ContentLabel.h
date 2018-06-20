@@ -17,8 +17,8 @@ namespace NetMip
 	public ref class ContentLabel : public ManagedObject<std::shared_ptr<mip::ContentLabel>>
 	{
 	internal:
-		ContentLabel(std::shared_ptr<mip::ContentLabel>* contentLabel)
-			: ManagedObject(contentLabel)
+		ContentLabel(bool owner, std::shared_ptr<mip::ContentLabel>* contentLabel)
+			: ManagedObject(owner, contentLabel)
 		{}
 
 	public:

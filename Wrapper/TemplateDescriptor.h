@@ -11,8 +11,8 @@ namespace NetMip
 	public ref class TemplateDescriptor : public ManagedObject<std::shared_ptr<mip::TemplateDescriptor>>
 	{
 	internal:
-		TemplateDescriptor(std::shared_ptr<mip::TemplateDescriptor>* contentLabel)
-			: ManagedObject(contentLabel)
+		TemplateDescriptor(bool owner, std::shared_ptr<mip::TemplateDescriptor>* contentLabel)
+			: ManagedObject(owner, contentLabel)
 		{}
 
 	public:

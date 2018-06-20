@@ -8,68 +8,68 @@ namespace NetMip
 {
 	bool UserPolicy::AccessCheck(String^ right)
 	{
-		return m_Instance->get()->AccessCheck(net_string_to_std_string(right));
+		return this->Instance->get()->AccessCheck(net_string_to_std_string(right));
 	}
 
 	UserPolicyType UserPolicy::UserPolicyType::get()
 	{
-		return (NetMip::UserPolicyType)(m_Instance->get()->GetType());
+		return (NetMip::UserPolicyType)(this->Instance->get()->GetType());
 	}
 
 	String^ UserPolicy::Name::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetName());
+		return std_string_to_net_string(this->Instance->get()->GetName());
 	}
 
 	String^ UserPolicy::Description::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetDescription());
+		return std_string_to_net_string(this->Instance->get()->GetDescription());
 	}
 
 	NetMip::TemplateDescriptor^ UserPolicy::TemplateDescriptor::get()
 	{
 		std::shared_ptr<mip::TemplateDescriptor>* ptrTemplateDescriptor = new std::shared_ptr<mip::TemplateDescriptor>(
-			m_Instance->get()->GetTemplateDescriptor());
+			this->Instance->get()->GetTemplateDescriptor());
 
-		return gcnew NetMip::TemplateDescriptor(ptrTemplateDescriptor);
+		return gcnew NetMip::TemplateDescriptor(true, ptrTemplateDescriptor);
 	}
 
 	NetMip::PolicyDescriptor^ UserPolicy::PolicyDescriptor::get()
 	{
 		std::shared_ptr<mip::PolicyDescriptor>* ptrPolicyDescriptor = new std::shared_ptr<mip::PolicyDescriptor>(
-			m_Instance->get()->GetPolicyDescriptor());
+			this->Instance->get()->GetPolicyDescriptor());
 
-		return gcnew NetMip::PolicyDescriptor(ptrPolicyDescriptor);
+		return gcnew NetMip::PolicyDescriptor(true, ptrPolicyDescriptor);
 	}
 
 	String^ UserPolicy::Owner::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetOwner());
+		return std_string_to_net_string(this->Instance->get()->GetOwner());
 	}
 
 	String^ UserPolicy::IssuedTo::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetIssuedTo());
+		return std_string_to_net_string(this->Instance->get()->GetIssuedTo());
 	}
 
 	bool UserPolicy::IsIssuedToOwner::get()
 	{
-		return m_Instance->get()->IsIssuedToOwner();
+		return this->Instance->get()->IsIssuedToOwner();
 	}
 
 	String^ UserPolicy::ContentId::get()
 	{
-		return std_string_to_net_string(m_Instance->get()->GetContentId());
+		return std_string_to_net_string(this->Instance->get()->GetContentId());
 	}
 
 	bool UserPolicy::DoesUseDeprecatedAlgorithms::get()
 	{
-		return m_Instance->get()->DoesUseDeprecatedAlgorithms();
+		return this->Instance->get()->DoesUseDeprecatedAlgorithms();
 	}
 
 	bool UserPolicy::IsAuditedExtractAllowed::get()
 	{
-		return m_Instance->get()->IsAuditedExtractAllowed();
+		return this->Instance->get()->IsAuditedExtractAllowed();
 	}
 
 }

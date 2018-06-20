@@ -11,7 +11,7 @@ namespace NetMip
 	public ref class Identity : public ManagedObject<mip::Identity>
 	{
 	internal:
-		Identity(mip::Identity* identity);
+		Identity(bool owner, mip::Identity* identity);
 
 	public:
 		Identity();

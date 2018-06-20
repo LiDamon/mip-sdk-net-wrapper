@@ -5,16 +5,11 @@ namespace NetMip
 	template<class T>
 	public ref class ManagedObject
 	{
-	protected:
+	private:
 		T * m_Instance;
 		bool m_owner;
 
 	protected:
-		ManagedObject(T* instance)
-			: ManagedObject(true, instance)
-		{
-		}
-
 		ManagedObject(bool owner, T* instance)
 			: m_Instance(instance),
 			  m_owner(owner)
@@ -39,9 +34,13 @@ namespace NetMip
 			}
 		}
 
-		T* GetInstance()
+	internal:
+		property T* Instance
 		{
-			return m_Instance;
+			T* get()
+			{
+				return m_Instance;
+			}
 		}
 	};
 }

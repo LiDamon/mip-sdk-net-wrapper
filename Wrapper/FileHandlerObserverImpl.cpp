@@ -19,7 +19,7 @@ namespace NetMip
 
 		std::shared_ptr<mip::ContentLabel>* ptrContentLabel = new std::shared_ptr<mip::ContentLabel>(label);
 
-		lateValue->SetValue(gcnew ContentLabel(ptrContentLabel));
+		lateValue->SetValue(gcnew ContentLabel(true, ptrContentLabel));
 	}
 
 	void FileHandlerObserverImpl::OnGetLabelFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context)
@@ -38,7 +38,7 @@ namespace NetMip
 
 		std::shared_ptr<mip::UserPolicy>* ptrUserPolicy = new std::shared_ptr<mip::UserPolicy>(userPolicy);
 
-		lateValue->SetValue(gcnew UserPolicy(ptrUserPolicy));
+		lateValue->SetValue(gcnew UserPolicy(true, ptrUserPolicy));
 	}
 	
 	void FileHandlerObserverImpl::OnGetProtectionFailure(const std::exception_ptr& error, const std::shared_ptr<void>& context)

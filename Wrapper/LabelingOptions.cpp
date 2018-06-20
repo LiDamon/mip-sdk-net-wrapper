@@ -7,27 +7,27 @@
 namespace NetMip
 {
 	LabelingOptions::LabelingOptions(AssignmentMethod method, String^ justificationMessage)
-		: ManagedObject(new mip::LabelingOptions((mip::AssignmentMethod)method, net_string_to_std_string(justificationMessage)))
+		: ManagedObject(true, new mip::LabelingOptions((mip::AssignmentMethod)method, net_string_to_std_string(justificationMessage)))
 	{
 	}
 
 	AssignmentMethod LabelingOptions::Method::get()
 	{
-		return (NetMip::AssignmentMethod)(m_Instance->GetAssignmentMethod());
+		return (NetMip::AssignmentMethod)(this->Instance->GetAssignmentMethod());
 	}
 
 	void LabelingOptions::Method::set(AssignmentMethod value)
 	{
-		m_Instance->SetMethod((mip::AssignmentMethod)value);
+		this->Instance->SetMethod((mip::AssignmentMethod)value);
 	}
 
 	String^ LabelingOptions::JustificationMessage::get()
 	{
-		return std_string_to_net_string(m_Instance->GetJustificationMessage());
+		return std_string_to_net_string(this->Instance->GetJustificationMessage());
 	}
 
 	void LabelingOptions::JustificationMessage::set(String^ value)
 	{
-		m_Instance->SetJustificationMessage(net_string_to_std_string(value));
+		this->Instance->SetJustificationMessage(net_string_to_std_string(value));
 	}
 }

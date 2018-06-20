@@ -9,7 +9,7 @@
 namespace NetMip
 {
 	FileEngine::Settings::Settings(String^ id, String^ clientData, String^ locale)
-		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(
+		: FileEngine::Settings::Settings(true, new mip::FileEngine::Settings(
 			net_string_to_std_string(id),
 			net_string_to_std_string(clientData),
 			net_string_to_std_string(locale)))
@@ -17,61 +17,61 @@ namespace NetMip
 	}
 
 	FileEngine::Settings::Settings(NetMip::Identity^ identity, String^ clientData, String^ locale)
-		: FileEngine::Settings::Settings(new mip::FileEngine::Settings(
-			*(identity->GetInstance()),
+		: FileEngine::Settings::Settings(true, new mip::FileEngine::Settings(
+			*(identity->Instance),
 			net_string_to_std_string(clientData),
 			net_string_to_std_string(locale)))
 	{
 	}
 
-	FileEngine::Settings::Settings(mip::FileEngine::Settings* settings)
-		: ManagedObject(settings)
+	FileEngine::Settings::Settings(bool owner, mip::FileEngine::Settings* settings)
+		: ManagedObject(owner, settings)
 	{
 	}
 
 
 	String^ FileEngine::Settings::Id::get()
 	{
-		return std_string_to_net_string(m_Instance->GetId());
+		return std_string_to_net_string(this->Instance->GetId());
 	}
 
 	Identity^ FileEngine::Settings::Identity::get()
 	{
-		mip::Identity identity = m_Instance->GetIdentity();
-		mip::Identity* ptr = &(identity);
+		mip::Identity identity = this->Instance->GetIdentity();
+		mip::Identity* ptr = new mip::Identity(identity);
 
-		return gcnew NetMip::Identity(ptr);
+		return gcnew NetMip::Identity(true, ptr);
 	}
 
 	void FileEngine::Settings::Identity::set(NetMip::Identity^ value)
 	{
-		m_Instance->SetIdentity(*(value->GetInstance()));
+		this->Instance->SetIdentity(*(value->Instance));
 	}
 
 	String^ FileEngine::Settings::ClientData::get()
 	{
-		return std_string_to_net_string(m_Instance->GetClientData());
+		return std_string_to_net_string(this->Instance->GetClientData());
 	}
 
 	String^ FileEngine::Settings::Locale::get()
 	{
-		return std_string_to_net_string(m_Instance->GetLocale());
+		return std_string_to_net_string(this->Instance->GetLocale());
 	}
 
 	String^ FileEngine::Settings::SessionId::get()
 	{
-		return std_string_to_net_string(m_Instance->GetSessionId());
+		return std_string_to_net_string(this->Instance->GetSessionId());
 	}
 
 	void FileEngine::Settings::SessionId::set(String^ value)
 	{
-		m_Instance->SetSessionId(net_string_to_std_string(value));
+		this->Instance->SetSessionId(net_string_to_std_string(value));
 	}
 
 
 	array<Pair<String^, String^>^>^ FileEngine::Settings::CustomSettings::get()
 	{
-		auto customSettings = m_Instance->GetCustomSettings();
+		auto customSettings = this->Instance->GetCustomSettings();
 
 		auto arr = gcnew array<Pair<String^, String^>^>((int)customSettings.size());
 
@@ -101,26 +101,28 @@ namespace NetMip
 			vector.push_back(pair);
 		}
 
-		m_Instance->SetCustomSettings(vector);
+		this->Instance->SetCustomSettings(vector);
 	}
 
 
 	FileEngine::Settings^ FileEngine::GetSettings()
 	{
-		auto mipSettings = m_Instance->get()->GetSettings();
-		return gcnew FileEngine::Settings(&(mipSettings));
+		auto mipSettings = this->Instance->get()->GetSettings();
+		mip::FileEngine::Settings* ptr = new mip::FileEngine::Settings(mipSettings);
+
+		return gcnew FileEngine::Settings(true, ptr);
 	}
 
 	array<NetMip::Label^>^ FileEngine::ListSensitivityLabels()
 	{
-		auto mipLabels = m_Instance->get()->ListSensitivityLabels();
+		auto mipLabels = this->Instance->get()->ListSensitivityLabels();
 
 		auto arr = gcnew array<Label^>((int)mipLabels.size());
 
 		int i = 0;
 		for (auto const& mipLabel : mipLabels)
 		{
-			auto label = gcnew Label(mipLabel.get());
+			auto label = gcnew Label(false, mipLabel.get());
 
 			arr[i++] = label;
 		}
@@ -133,7 +135,7 @@ namespace NetMip
 	{
 		auto observer = std::shared_ptr<mip::FileHandler::Observer>((mip::FileHandler::Observer*)(new FileHandlerObserverImpl()));
 
-		std::shared_ptr<mip::FileHandler> mipHandler = m_Instance->get()->CreateFileHandler(
+		std::shared_ptr<mip::FileHandler> mipHandler = this->Instance->get()->CreateFileHandler(
 			net_string_to_std_string(inputFilePath),
 			observer);
 
@@ -150,7 +152,7 @@ namespace NetMip
 
 		auto observer = std::shared_ptr<mip::FileHandler::Observer>((mip::FileHandler::Observer*)(new FileHandlerObserverImpl()));
 
-		std::shared_ptr<mip::FileHandler> mipHandler = m_Instance->get()->CreateFileHandler(
+		std::shared_ptr<mip::FileHandler> mipHandler = this->Instance->get()->CreateFileHandler(
 			streamWrapper,
 			net_string_to_std_string(inputFilePath),
 			observer);

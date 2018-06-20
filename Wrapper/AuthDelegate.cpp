@@ -14,19 +14,19 @@ namespace NetMip
 	//{
 	//}
 
-	AuthDelegate::OAuth2Challenge::OAuth2Challenge(mip::AuthDelegate::OAuth2Challenge* challenge)
-		: ManagedObject(false, challenge)
+	AuthDelegate::OAuth2Challenge::OAuth2Challenge(bool owner, mip::AuthDelegate::OAuth2Challenge* challenge)
+		: ManagedObject(owner, challenge)
 	{
 	}
 
 	String^ AuthDelegate::OAuth2Challenge::Authority::get()
 	{
-		return std_string_to_net_string(m_Instance->GetAuthority());
+		return std_string_to_net_string(this->Instance->GetAuthority());
 	}
 
 	String^ AuthDelegate::OAuth2Challenge::Resource::get()
 	{
-		return std_string_to_net_string(m_Instance->GetResource());
+		return std_string_to_net_string(this->Instance->GetResource());
 	}
 
 
@@ -51,12 +51,12 @@ namespace NetMip
 
 	String^ AuthDelegate::OAuth2Token::AccessToken::get()
 	{
-		return std_string_to_net_string(m_Instance->GetAccessToken());
+		return std_string_to_net_string(this->Instance->GetAccessToken());
 	}
 
 	void AuthDelegate::OAuth2Token::AccessToken::set(String^ value)
 	{
-		m_Instance->SetAccessToken(net_string_to_std_string(value));
+		this->Instance->SetAccessToken(net_string_to_std_string(value));
 	}
 
 
@@ -100,8 +100,8 @@ namespace NetMip
 		mip::AuthDelegate::OAuth2Token& token)
 	{
 		bool result = m_cli->AcquireOAuth2Token(
-			gcnew NetMip::Identity((mip::Identity*)(&identity)),
-			gcnew NetMip::AuthDelegate::OAuth2Challenge((mip::AuthDelegate::OAuth2Challenge*)(&challenge)),
+			gcnew NetMip::Identity(true, new mip::Identity(identity)),
+			gcnew NetMip::AuthDelegate::OAuth2Challenge(true, new mip::AuthDelegate::OAuth2Challenge(challenge)),
 			gcnew NetMip::AuthDelegate::OAuth2Token(&token));
 
 		return result;
